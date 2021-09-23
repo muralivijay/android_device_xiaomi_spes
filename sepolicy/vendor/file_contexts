@@ -59,7 +59,7 @@
 /sys/devices/platform/soc/5c1b000.qcom,cci0/5c1b000.qcom,cci0:qcom,camera-flash@0/leds/led:torch/brightness                                         u:object_r:sysfs_leds:s0
 
 # Lights
-/vendor/bin/hw/android\.hardware\.lights-service\.spes                  u:object_r:hal_light_default_exec:s0
+/vendor/bin/hw/android\.hardware\.light-service\.xiaomi                  u:object_r:hal_light_default_exec:s0
 
 # Misys
 /vendor/bin/hw/vendor\.xiaomi\.hardware\.misys@1\.0-service             u:object_r:hal_misys_default_exec:s0
