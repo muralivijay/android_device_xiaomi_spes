@@ -1104,7 +1104,6 @@ vendor/etc/init/vendor.sensors.qti.rc
 vendor/etc/init/vendor.sensors.sscrpcd.rc
 vendor/etc/elliptic_sensor.xml
 -vendor/lib64/hw/sensors.elliptic@2.0.so
--vendor/lib64/libnotifyaudiohal.so
 -vendor/lib64/libsensorcal.so
 -vendor/lib64/libsensorslog.so
 -vendor/lib64/libsns_device_mode_stub.so

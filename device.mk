@@ -127,7 +127,8 @@ PRODUCT_PACKAGES += \
     liba2dpoffload \
     libexthwplugin \
     libhfp \
-    libbatterylistener
+    libbatterylistener \
+    libnotifyaudiohal
 
 # Audio configs
 PRODUCT_COPY_FILES += \
