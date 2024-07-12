@@ -73,7 +73,11 @@ persist.vendor.sys.provision.status             u:object_r:vendor_tee_listener_p
 vendor.sys.feature_state                        u:object_r:vendor_mtdservice_prop:s0
 
 # RIL
+ro.vendor.oem.sno                               u:object_r:vendor_sno_prop:s0
+ro.vendor.oem.psno                              u:object_r:vendor_sno_prop:s0
 ro.vendor.ril                                   u:object_r:vendor_public_vendor_default_prop:s0
+ro.vendor.ril.svlte1x                      u:object_r:vendor_radio_prop:s0
+ro.vendor.ril.svdo                         u:object_r:vendor_radio_prop:s0
 
 # Sensor
 persist.sensor.                                 u:object_r:vendor_sensors_prop:s0
