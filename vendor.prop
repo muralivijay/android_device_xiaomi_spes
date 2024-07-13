@@ -84,6 +84,7 @@ vendor.qcom.bluetooth.soc=cherokee
 
 # Camera
 persist.camera.gyro.disable=0
+persist.vendor.camera.perflock.enable=0
 
 # Crypto
 ro.crypto.allow_encrypt_override=true
