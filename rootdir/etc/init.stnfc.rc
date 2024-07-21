@@ -19,5 +19,8 @@ on post-fs && property:ro.boot.hwname=spesn
     start stflashtool
     setprop ro.vendor.se.type HCE,UICC
 
+on boot
+    stop vendor.st_nfc_hal_service
+
 on boot && property:ro.boot.hwname=spesn
     start nfc_hal_service
