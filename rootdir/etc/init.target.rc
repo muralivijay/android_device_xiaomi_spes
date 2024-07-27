@@ -67,8 +67,6 @@ on fs
     chmod 0644 /persist/audio/us_manual_cal
 
 on late-fs
-    wait_for_prop hwservicemanager.ready true
-    exec_start wait_for_keymaster
     mount_all /vendor/etc/fstab.qcom --late
 
 on post-fs-data
