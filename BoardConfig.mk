@@ -159,7 +159,8 @@ BOARD_KERNEL_CMDLINE += \
     msm_rtb.filter=0x237 \
     service_locator.enable=1 \
     swiotlb=2048 \
-    kpti=off
+    kpti=off \
+    kasan=off
 
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_CONFIG := vendor/spes-perf_defconfig
