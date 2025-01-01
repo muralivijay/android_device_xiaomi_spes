@@ -13,6 +13,8 @@ LOCAL_HEADER_LIBRARIES := libutils_headers \
     libsystem_headers \
     libhardware_headers
 
+LOCAL_HEADER_LIBRARIES += libqahw_headers
+
 LOCAL_SRC_FILES := \
     src/qahw.c \
     src/qahw_effect.c
@@ -34,11 +36,10 @@ endif
 include $(BUILD_SHARED_LIBRARY)
 
 include $(CLEAR_VARS)
-
-LOCAL_MODULE := libqahw_headers
-LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)/inc
-LOCAL_PROPRIETARY_MODULE := true
-
+LOCAL_MODULE := libqahwwrapper_headers
+LOCAL_EXPORT_C_INCLUDE_DIRS   := $(LOCAL_PATH)/inc/
+LOCAL_VENDOR_MODULE := true
 include $(BUILD_HEADER_LIBRARY)
+
 endif
 endif

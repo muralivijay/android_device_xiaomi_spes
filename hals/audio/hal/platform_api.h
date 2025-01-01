@@ -18,7 +18,7 @@
 
  * Changes from Qualcomm Innovation Center are provided under the following license:
 
- * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) 2022, 2024 Qualcomm Innovation Center, Inc. All rights reserved.
 
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted (subject to the limitations in the
@@ -419,6 +419,11 @@ int platform_get_active_microphones(void *platform, unsigned int channels,
                                     audio_usecase_t usecase,
                                     struct audio_microphone_characteristic_t *mic_array,
                                     size_t *mic_count);
+
+int platform_get_active_microphones_v2(void *platform, unsigned int channels,
+                                    audio_usecase_t usecase,
+                                    struct audio_microphone_characteristic_t *mic_array,
+                                    size_t *mic_count, int car_audio_stream);
 
 int platform_get_license_by_product(void *platform, const char* product_name, int *product_id, char* product_license);
 bool platform_get_eccarstate(void *platform);

@@ -218,6 +218,10 @@ LOCAL_C_INCLUDES := \
     $(TARGET_OUT_HEADERS)/mm-audio/surround_sound_3mic/ \
     $(TARGET_OUT_HEADERS)/common/inc/
 
+ifeq ($(TARGET_BOARD_AUTO),true)
+LOCAL_HEADER_LIBRARIES += libsurround_3mic_proc_headers
+endif
+
 ifeq ($(ENABLE_AUDIO_LEGACY_TECHPACK),true)
 LOCAL_HEADER_LIBRARIES += qti_legacy_audio_kernel_uapi
 endif
@@ -907,9 +911,9 @@ ifneq ($(filter kona lahaina holi,$(TARGET_BOARD_PLATFORM)),)
 LOCAL_SANITIZE := integer_overflow
 endif
 include $(BUILD_SHARED_LIBRARY)
-
 endif
 
+ifneq ($(TARGET_BOARD_AUTO),true)
 #-------------------------------------------
 #            Build BATTERY_LISTENER
 #-------------------------------------------
@@ -981,6 +985,7 @@ ifneq ($(filter kona lahaina holi,$(TARGET_BOARD_PLATFORM)),)
 LOCAL_SANITIZE := integer_overflow
 endif
 include $(BUILD_SHARED_LIBRARY)
+endif
 
 #-------------------------------------------
 #            Build HWDEP_CAL
@@ -1259,6 +1264,10 @@ include $(CLEAR_VARS)
 LOCAL_MODULE := libaudiopowerpolicy
 
 LOCAL_VENDOR_MODULE := true
+
+ifeq ($(call is-board-platform-in-list,$(MSMSTEPPE)),true)
+        LOCAL_CFLAGS := -DPLATFORM_MSMSTEPPE
+endif
 
 LOCAL_SRC_FILES:= \
         PowerPolicyClient.cpp \

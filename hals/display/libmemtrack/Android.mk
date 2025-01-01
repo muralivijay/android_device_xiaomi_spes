@@ -13,7 +13,6 @@
 # limitations under the License.
 
 enable_memtrack := true
-
 ifeq ($(TARGET_USES_QMAA),true)
 #memtrack requires graphics to work
 ifeq ($(TARGET_USES_QMAA_OVERRIDE_GFX),false)

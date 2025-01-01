@@ -17,8 +17,7 @@ LOCAL_CPPFLAGS += --coverage -fprofile-arcs -ftest-coverage
 LOCAL_STATIC_LIBRARIES += libprofile_rt
 endif
 
-LOCAL_HEADER_LIBRARIES := \
-    libqahw_headers
+LOCAL_HEADER_LIBRARIES := libqahwwrapper_headers
 
 LOCAL_SHARED_LIBRARIES := \
     liblog \
@@ -47,5 +46,11 @@ include $(BUILD_HEADER_LIBRARY)
 
 #test app compilation
 include $(LOCAL_PATH)/test/Android.mk
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := libqahw_headers
+LOCAL_EXPORT_C_INCLUDE_DIRS   := $(LOCAL_PATH)/inc/
+LOCAL_VENDOR_MODULE := true
+include $(BUILD_HEADER_LIBRARY)
 
 endif

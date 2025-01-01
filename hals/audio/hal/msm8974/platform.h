@@ -17,7 +17,7 @@
  * limitations under the License.
  *
  * Changes from Qualcomm Innovation Center are provided under the following license:
- * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
  * SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 
@@ -255,6 +255,7 @@ enum {
     SND_DEVICE_IN_SPEAKER_MIC_AEC_NS,
     SND_DEVICE_IN_SPEAKER_MIC_AEC_NS_SB,
     SND_DEVICE_IN_SPEAKER_MIC_AEC_NS_NN,
+    SND_DEVICE_IN_SPEAKER_MIC_AEC_AUTO,
     SND_DEVICE_IN_SPEAKER_DMIC,
     SND_DEVICE_IN_SPEAKER_DMIC_NN,
     SND_DEVICE_IN_SPEAKER_DMIC_AEC,

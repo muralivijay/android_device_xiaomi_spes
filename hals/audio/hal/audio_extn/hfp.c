@@ -81,6 +81,8 @@ static int32_t start_hfp(struct audio_device *adev,
 
 static int32_t stop_hfp(struct audio_device *adev);
 
+int hfp_set_mic_mute2(struct audio_device *adev, bool state);
+
 struct hfp_module {
     struct pcm *hfp_sco_rx;
     struct pcm *hfp_sco_tx;
@@ -418,7 +420,7 @@ static int32_t start_hfp(struct audio_device *adev,
 
     /* Set mic volume by mute status, we don't provide set mic volume in phone app, only
     provide mute and unmute. */
-    hfp_set_mic_mute(adev, adev->mic_muted);
+    hfp_set_mic_mute2(adev, adev->mic_muted);
 
     ALOGD("%s: exit: status(%d)", __func__, ret);
     return 0;
@@ -568,9 +570,9 @@ void hfp_set_parameters(struct audio_device *adev, struct str_parms *parms)
     ret = str_parms_get_str(parms, AUDIO_PARAMETER_HFP_ENABLE, value,
                             sizeof(value));
     if (ret >= 0) {
-            if (!strncmp(value, "true", sizeof(value)) && !hfpmod.is_hfp_running)
+            if (!strncmp(value, "true", strlen("true")) && !hfpmod.is_hfp_running)
                 ret = start_hfp(adev,parms);
-            else if (!strncmp(value, "false", sizeof(value)) && hfpmod.is_hfp_running)
+            else if (!strncmp(value, "false", strlen("false")) && hfpmod.is_hfp_running)
                 stop_hfp(adev);
             else
                 ALOGE("hfp_enable=%s is unsupported", value);

@@ -17,7 +17,7 @@
  * limitations under the License.
  *
  * Changes from Qualcomm Innovation Center are provided under the following license:
- * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
  * SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 
@@ -1048,7 +1048,7 @@ static int set_stream_app_type_mixer_ctrl(struct audio_device *adev,
                                           snd_device_t snd_device)
 {
 
-    char mixer_ctl_name[MAX_LENGTH_MIXER_CONTROL_IN_INT];
+    char mixer_ctl_name[MAX_LENGTH_MIXER_CONTROL_IN_INT] = {0};
     struct mixer_ctl *ctl;
     size_t app_type_cfg[MAX_LENGTH_MIXER_CONTROL_IN_INT] = {0};
     int len = 0, rc = 0;
@@ -1430,7 +1430,7 @@ static int send_app_type_cfg_for_device(struct audio_device *adev,
                                         struct audio_usecase *usecase,
                                         int split_snd_device)
 {
-    char mixer_ctl_name[MAX_LENGTH_MIXER_CONTROL_IN_INT];
+    char mixer_ctl_name[MAX_LENGTH_MIXER_CONTROL_IN_INT] = {0};
     size_t app_type_cfg[MAX_LENGTH_MIXER_CONTROL_IN_INT] = {0};
     int len = 0, rc;
     struct mixer_ctl *ctl;
@@ -2509,6 +2509,7 @@ int audio_extn_utils_compress_get_dsp_latency(struct stream_out *out)
 {
     int ret = -EINVAL;
     struct snd_compr_metadata metadata;
+    memset(&metadata, 0, sizeof(struct snd_compr_metadata));
     int delay_ms = COMPRESS_OFFLOAD_PLAYBACK_LATENCY;
 
     /* override the latency for pcm offload use case */
@@ -2556,6 +2557,7 @@ int audio_extn_utils_compress_get_dsp_latency(struct stream_out *out __unused)
 int audio_extn_utils_compress_set_render_mode(struct stream_out *out)
 {
     struct snd_compr_metadata metadata;
+    memset(&metadata, 0, sizeof(struct snd_compr_metadata));
     int ret = -EINVAL;
 
     if (!(is_offload_usecase(out->usecase))) {
@@ -2600,6 +2602,7 @@ int audio_extn_utils_compress_set_clk_rec_mode(
             struct audio_usecase *usecase)
 {
     struct snd_compr_metadata metadata;
+    memset(&metadata, 0, sizeof(struct snd_compr_metadata));
     struct stream_out *out = NULL;
     int ret = -EINVAL;
 
@@ -2669,6 +2672,7 @@ int audio_extn_utils_compress_set_render_window(
             struct audio_out_render_window_param *render_window)
 {
     struct snd_compr_metadata metadata;
+    memset(&metadata, 0, sizeof(struct snd_compr_metadata));
     int ret = -EINVAL;
 
     if(render_window == NULL) {
@@ -2732,6 +2736,7 @@ int audio_extn_utils_compress_set_start_delay(
             struct audio_out_start_delay_param *delay_param)
 {
     struct snd_compr_metadata metadata;
+    memset(&metadata, 0, sizeof(struct snd_compr_metadata));
     int ret = -EINVAL;
 
     if(delay_param == NULL) {
@@ -2791,6 +2796,7 @@ int audio_extn_utils_compress_get_dsp_presentation_pos(struct stream_out *out,
     uint64_t *val = NULL;
     uint64_t time = 0;
     struct snd_compr_metadata metadata;
+    memset(&metadata, 0, sizeof(struct snd_compr_metadata));
 
     ALOGV("%s:: Quering DSP position with clock id %d",__func__, clock_id);
     metadata.key = SNDRV_COMPRESS_DSP_POSITION;
@@ -3015,6 +3021,7 @@ int audio_extn_utils_compress_enable_drift_correction(
         struct audio_out_enable_drift_correction *drift)
 {
     struct snd_compr_metadata metadata;
+    memset(&metadata, 0, sizeof(struct snd_compr_metadata));
     int ret = -EINVAL;
 
     if(drift == NULL) {
@@ -3064,6 +3071,7 @@ int audio_extn_utils_compress_correct_drift(
         struct audio_out_correct_drift *drift_param)
 {
     struct snd_compr_metadata metadata;
+    memset(&metadata, 0, sizeof(struct snd_compr_metadata));
     int ret = -EINVAL;
 
     if (drift_param == NULL) {
@@ -3315,7 +3323,7 @@ int audio_extn_utils_get_channels_from_string(const char *id_string)
     return -EINVAL;
 }
 
-void audio_extn_utils_release_snd_device(snd_device_t snd_device)
+void audio_extn_utils_release_snd_device(snd_device_t snd_device __unused)
 {
     audio_extn_dev_arbi_release(snd_device);
     audio_extn_sound_trigger_update_device_status(snd_device,

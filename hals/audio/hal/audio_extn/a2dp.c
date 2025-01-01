@@ -187,6 +187,8 @@ int channel_map_array[] = { PCM_CHANNEL_L, PCM_CHANNEL_R, PCM_CHANNEL_C, PCM_CHA
 static void *vndk_fwk_lib_handle = NULL;
 static int is_running_with_enhanced_fwk = UNINITIALIZED;
 
+static char g_audio_framework[PROPERTY_VALUE_MAX];
+
 typedef int (*vndk_fwk_isVendorEnhancedFwk_t)(void);
 static vndk_fwk_isVendorEnhancedFwk_t vndk_fwk_isVendorEnhancedFwk;
 
@@ -935,9 +937,16 @@ typedef struct {
 static void update_offload_codec_capabilities()
 {
 
-    a2dp.is_a2dp_offload_supported =
+    property_get("ro.boot.audio", g_audio_framework, NULL);
+
+    if (strstr(g_audio_framework, "audioreach") != NULL) {
+        a2dp.is_a2dp_offload_supported =
             property_get_bool(SYSPROP_A2DP_OFFLOAD_SUPPORTED, false) &&
             !property_get_bool(SYSPROP_A2DP_OFFLOAD_DISABLED, false);
+    } else {
+        /*For Elite audio framework */
+        a2dp.is_a2dp_offload_supported = true;
+    }
 
     ALOGD("%s: A2DP offload supported = %d",__func__,
           a2dp.is_a2dp_offload_supported);
@@ -3340,7 +3349,7 @@ int a2dp_set_parameters(struct str_parms *parms, bool *reconfig)
 
     if (a2dp.is_a2dp_offload_supported == false) {
         ALOGV("no supported encoders identified,ignoring a2dp setparam");
-        status = -EINVAL;
+        status = AUDIO_HW_A2DP_OFFLOAD_IS_NOT_SUPPORTED;
         goto param_handled;
     }
 

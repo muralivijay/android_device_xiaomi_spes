@@ -36,7 +36,7 @@
 
  *  Changes from Qualcomm Innovation Center are provided under the following license:
 
- * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
 
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted (subject to the limitations in the
@@ -80,6 +80,7 @@
 #include <hardware/audio.h>
 #include <tinyalsa/asoundlib.h>
 #include <tinycompress/tinycompress.h>
+#include <errno.h>
 
 #include <audio_route/audio_route.h>
 #ifndef LINUX_ENABLED
@@ -111,14 +112,13 @@ typedef struct {
 #endif
 
 #if LINUX_ENABLED
+#define ADM_LIBRARY_PATH "/usr/lib/libadm.so"
 #if defined(__LP64__)
 #define VISUALIZER_LIBRARY_PATH "/usr/lib64/libqcomvisualizer.so"
 #define OFFLOAD_EFFECTS_BUNDLE_LIBRARY_PATH "/usr/lib64/libqcompostprocbundle.so"
-#define ADM_LIBRARY_PATH "/usr/lib64/libadm.so"
 #else
 #define VISUALIZER_LIBRARY_PATH "/usr/lib/libqcomvisualizer.so"
 #define OFFLOAD_EFFECTS_BUNDLE_LIBRARY_PATH "/usr/lib/libqcompostprocbundle.so"
-#define ADM_LIBRARY_PATH "/usr/lib/libadm.so"
 #endif
 #else
 #if defined(__LP64__)
@@ -411,6 +411,7 @@ typedef enum render_mode {
  */
 #define MAX_CAR_AUDIO_STREAMS    32
 enum {
+    CAR_AUDIO_STREAM_INVALID            = -1,
     CAR_AUDIO_STREAM_MEDIA              = 0x1,
     CAR_AUDIO_STREAM_SYS_NOTIFICATION   = 0x2,
     CAR_AUDIO_STREAM_NAV_GUIDANCE       = 0x4,
@@ -422,6 +423,9 @@ enum {
     CAR_AUDIO_STREAM_REAR_SEAT          = 0x10000,
     CAR_AUDIO_STREAM_IN_REAR_SEAT       = 0x20000,
 };
+
+/* this Macro will be used when  */
+#define AUDIO_HW_A2DP_OFFLOAD_IS_NOT_SUPPORTED -EINVAL
 
 struct stream_app_type_cfg {
     int sample_rate;
@@ -851,7 +855,8 @@ struct audio_device {
     bool ha_proxy_enable;
     int ext_controller;
     int ext_stream;
-
+    pthread_mutex_t active_inputs_list_lock;
+    pthread_mutex_t active_outputs_list_lock;
     amplifier_device_t *amp;
 };
 
@@ -872,6 +877,7 @@ struct soft_step_volume_params {
 #endif
 void out_set_power_policy(uint8_t enable);
 void in_set_power_policy(uint8_t enable);
+card_status_t snd_card_status(void);
 
 int select_devices(struct audio_device *adev,
                           audio_usecase_t uc_id);

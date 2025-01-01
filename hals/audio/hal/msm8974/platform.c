@@ -17,7 +17,7 @@
  * limitations under the License.
  *
  * Changes from Qualcomm Innovation Center are provided under the following license:
- * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
  * SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 
@@ -762,6 +762,7 @@ static const char * const device_table[SND_DEVICE_MAX] = {
     [SND_DEVICE_IN_SPEAKER_MIC_AEC_NS] = "speaker-mic",
     [SND_DEVICE_IN_SPEAKER_MIC_AEC_NS_SB] = "speaker-mic",
     [SND_DEVICE_IN_SPEAKER_MIC_AEC_NS_NN] = "speaker-mic",
+    [SND_DEVICE_IN_SPEAKER_MIC_AEC_AUTO] = "speaker-mic",
     [SND_DEVICE_IN_SPEAKER_DMIC] = "speaker-dmic-endfire",
     [SND_DEVICE_IN_SPEAKER_DMIC_NN] = "dmic-nn",
     [SND_DEVICE_IN_SPEAKER_DMIC_AEC] = "speaker-dmic-endfire",
@@ -1091,6 +1092,7 @@ static int acdb_device_table[SND_DEVICE_MAX] = {
     [SND_DEVICE_IN_SPEAKER_MIC_AEC_NS] = 114,
     [SND_DEVICE_IN_SPEAKER_MIC_AEC_NS_SB] = 174,
     [SND_DEVICE_IN_SPEAKER_MIC_AEC_NS_NN] = 192,
+    [SND_DEVICE_IN_SPEAKER_MIC_AEC_AUTO] = 139,
     [SND_DEVICE_IN_SPEAKER_DMIC] = 43,
     [SND_DEVICE_IN_SPEAKER_DMIC_NN] = 207,
     [SND_DEVICE_IN_SPEAKER_DMIC_AEC] = 115,
@@ -1353,6 +1355,7 @@ static struct name_to_index snd_device_name_index[SND_DEVICE_MAX] = {
     {TO_NAME_INDEX(SND_DEVICE_IN_SPEAKER_MIC_AEC_NS)},
     {TO_NAME_INDEX(SND_DEVICE_IN_SPEAKER_MIC_AEC_NS_SB)},
     {TO_NAME_INDEX(SND_DEVICE_IN_SPEAKER_MIC_AEC_NS_NN)},
+    {TO_NAME_INDEX(SND_DEVICE_IN_SPEAKER_MIC_AEC_AUTO)},
     {TO_NAME_INDEX(SND_DEVICE_IN_SPEAKER_DMIC)},
     {TO_NAME_INDEX(SND_DEVICE_IN_SPEAKER_DMIC_NN)},
     {TO_NAME_INDEX(SND_DEVICE_IN_SPEAKER_DMIC_AEC)},
@@ -1568,10 +1571,12 @@ static struct name_to_index usecase_name_index[AUDIO_USECASE_MAX] = {
     {TO_NAME_INDEX(USECASE_AUDIO_PLAYBACK_FRONT_PASSENGER)},
     {TO_NAME_INDEX(USECASE_AUDIO_PLAYBACK_REAR_SEAT)},
     {TO_NAME_INDEX(USECASE_AUDIO_RECORD_VOIP_LOW_LATENCY)},
+    {TO_NAME_INDEX(USECASE_ICC_CALL)},
     {TO_NAME_INDEX(USECASE_AUDIO_RECORD_BUS)},
     {TO_NAME_INDEX(USECASE_AUDIO_RECORD_BUS_FRONT_PASSENGER)},
     {TO_NAME_INDEX(USECASE_AUDIO_RECORD_BUS_REAR_SEAT)},
     {TO_NAME_INDEX(USECASE_AUDIO_PLAYBACK_SYNTHESIZER)},
+    {TO_NAME_INDEX(USECASE_AUDIO_RECORD_ECHO_REF_EXT)},
 };
 
 static const struct name_to_index usecase_type_index[USECASE_TYPE_MAX] = {
@@ -2716,6 +2721,7 @@ static void set_platform_defaults(struct platform_data * my_data)
     hw_interface_table[SND_DEVICE_IN_SPEAKER_MIC_AEC_NS] = strdup("SLIMBUS_0_TX");
     hw_interface_table[SND_DEVICE_IN_SPEAKER_MIC_AEC_NS_SB] = strdup("SLIMBUS_0_TX");
     hw_interface_table[SND_DEVICE_IN_SPEAKER_MIC_AEC_NS_NN] = strdup("SLIMBUS_0_TX");
+    hw_interface_table[SND_DEVICE_IN_SPEAKER_MIC_AEC_AUTO] = strdup("SLIMBUS_0_TX");
     hw_interface_table[SND_DEVICE_IN_SPEAKER_DMIC] = strdup("SLIMBUS_0_TX");
     hw_interface_table[SND_DEVICE_IN_SPEAKER_DMIC_NN] = strdup("SLIMBUS_0_TX");
     hw_interface_table[SND_DEVICE_IN_SPEAKER_DMIC_AEC] = strdup("SLIMBUS_0_TX");
@@ -3056,6 +3062,7 @@ const char * platform_get_snd_card_name_for_acdb_loader(const char *snd_card_nam
     return acdb_card_name;
 }
 
+#ifndef DAEMON_SUPPORT_AUTO
 static int platform_acdb_init(void *platform)
 {
     struct platform_data *my_data = (struct platform_data *)platform;
@@ -3115,6 +3122,7 @@ cleanup:
     }
     return result;
 }
+#endif
 
 #define MAX_PATH             (256)
 #define THERMAL_SYSFS "/sys/class/thermal"
@@ -4687,8 +4695,23 @@ void platform_snd_card_update(void *platform, card_status_t card_status)
 
     if (card_status == CARD_STATUS_ONLINE) {
         if (!platform_is_acdb_initialized(my_data)) {
+#ifdef DAEMON_SUPPORT_AUTO
+        struct audio_device *adev = ((struct platform_data *)platform)->adev;
+        int result = acdb_init_v2(adev->mixer);
+        if (!result) {
+            my_data->is_acdb_initialized = true;
+            ALOGD("ACDB initialized");
+            audio_hwdep_send_cal(my_data);
+        } else {
+            my_data->is_acdb_initialized = false;
+            ALOGD("ACDB initialization failed");
+            if (my_data->acdb_deallocate)
+                my_data->acdb_deallocate();
+        }
+#else
             if(platform_acdb_init(my_data))
                 ALOGE("%s: acdb initialization is failed", __func__);
+#endif
         } else if (my_data->acdb_send_common_top() < 0) {
                 ALOGD("%s: acdb did not set common topology", __func__);
         }
@@ -7043,6 +7066,9 @@ snd_device_t platform_get_output_snd_device(void *platform, struct stream_out *o
                     snd_device = SND_DEVICE_OUT_DISPLAY_PORT +
                         ((controller * MAX_STREAMS_PER_CONTROLLER) + stream);
                     break;
+                case EXT_DISPLAY_TYPE_HDMI:
+                    snd_device = SND_DEVICE_OUT_HDMI;
+                    break;
                 default:
                     ALOGE("%s: Invalid disp_type %d", __func__,
                            my_data->ext_disp[controller][stream].type);
@@ -7216,12 +7242,17 @@ static snd_device_t get_snd_device_for_voice_comm_ecns_enabled(struct platform_d
                                         : SND_DEVICE_IN_SPEAKER_DMIC_AEC_NS);
             }
             adev->acdb_settings |= DMIC_FLAG;
-        } else
+        } else {
+#ifndef PLATFORM_AUTO
             snd_device = my_data->fluence_sb_enabled ?
                              SND_DEVICE_IN_SPEAKER_MIC_SB
                              : (my_data->fluence_nn_enabled ?
                                  SND_DEVICE_IN_SPEAKER_MIC_NN
                                  : SND_DEVICE_IN_SPEAKER_MIC);
+#else
+            snd_device = SND_DEVICE_IN_SPEAKER_MIC_AEC_AUTO;
+#endif
+        }
     } else if (compare_device_type(in_devices, AUDIO_DEVICE_IN_BUILTIN_MIC)) {
         if ((my_data->fluence_type & FLUENCE_TRI_MIC) &&
             (my_data->source_mic_type & SOURCE_THREE_MIC)) {
@@ -7711,37 +7742,52 @@ snd_device_t platform_get_input_snd_device(void *platform,
     } else if (source == AUDIO_SOURCE_CAMCORDER) {
         if (compare_device_type(&in_devices, AUDIO_DEVICE_IN_BUILTIN_MIC) ||
             compare_device_type(&in_devices, AUDIO_DEVICE_IN_BACK_MIC)) {
-            switch (adev->camera_orientation) {
-            case CAMERA_BACK_LANDSCAPE:
-                snd_device = SND_DEVICE_IN_CAMCORDER_LANDSCAPE;
-                break;
-            case CAMERA_BACK_INVERT_LANDSCAPE:
-                snd_device = SND_DEVICE_IN_CAMCORDER_INVERT_LANDSCAPE;
-                break;
-            case CAMERA_BACK_PORTRAIT:
-                snd_device = SND_DEVICE_IN_CAMCORDER_PORTRAIT;
-                break;
-            case CAMERA_FRONT_LANDSCAPE:
-                snd_device = SND_DEVICE_IN_CAMCORDER_SELFIE_LANDSCAPE;
-                break;
-            case CAMERA_FRONT_INVERT_LANDSCAPE:
-                snd_device = SND_DEVICE_IN_CAMCORDER_SELFIE_INVERT_LANDSCAPE;
-                break;
-            case CAMERA_FRONT_PORTRAIT:
-                snd_device = SND_DEVICE_IN_CAMCORDER_SELFIE_PORTRAIT;
-                break;
-            default:
-                ALOGW("%s: invalid camera orientation %08x", __func__, adev->camera_orientation);
-                snd_device = SND_DEVICE_IN_CAMCORDER_LANDSCAPE;
-                break;
-            }
+
             if (str_bitwidth == 16) {
                 if ((my_data->fluence_type & FLUENCE_DUAL_MIC) &&
                     (my_data->source_mic_type & SOURCE_DUAL_MIC) &&
                     (channel_count == 2))
-                    snd_device = SND_DEVICE_IN_HANDSET_DMIC_STEREO;
+                    switch (adev->camera_orientation) {
+                        case CAMERA_BACK_LANDSCAPE:
+                        case CAMERA_FRONT_INVERT_LANDSCAPE:
+                            snd_device = SND_DEVICE_IN_SPEAKER_DMIC_STEREO;
+                            break;
+                        case CAMERA_BACK_INVERT_LANDSCAPE:
+                        case CAMERA_BACK_PORTRAIT:
+                        case CAMERA_FRONT_LANDSCAPE:
+                        case CAMERA_FRONT_PORTRAIT:
+                            snd_device = SND_DEVICE_IN_HANDSET_DMIC_STEREO;
+                            break;
+                        default:
+                            ALOGW("%s: invalid camera orientation %08x", __func__, adev->camera_orientation);
+                            snd_device = SND_DEVICE_IN_HANDSET_DMIC_STEREO;
+                            break;
+                    }
                 else
-                    snd_device = SND_DEVICE_IN_CAMCORDER_MIC;
+                    switch (adev->camera_orientation) {
+                        case CAMERA_BACK_LANDSCAPE:
+                            snd_device = SND_DEVICE_IN_CAMCORDER_LANDSCAPE;
+                            break;
+                        case CAMERA_BACK_INVERT_LANDSCAPE:
+                            snd_device = SND_DEVICE_IN_CAMCORDER_INVERT_LANDSCAPE;
+                            break;
+                        case CAMERA_BACK_PORTRAIT:
+                            snd_device = SND_DEVICE_IN_CAMCORDER_PORTRAIT;
+                            break;
+                        case CAMERA_FRONT_LANDSCAPE:
+                            snd_device = SND_DEVICE_IN_CAMCORDER_SELFIE_LANDSCAPE;
+                            break;
+                        case CAMERA_FRONT_INVERT_LANDSCAPE:
+                            snd_device = SND_DEVICE_IN_CAMCORDER_SELFIE_INVERT_LANDSCAPE;
+                            break;
+                        case CAMERA_FRONT_PORTRAIT:
+                            snd_device = SND_DEVICE_IN_CAMCORDER_SELFIE_PORTRAIT;
+                            break;
+                        default:
+                            ALOGW("%s: invalid camera orientation %08x", __func__, adev->camera_orientation);
+                            snd_device = SND_DEVICE_IN_CAMCORDER_LANDSCAPE;
+                            break;
+                    }
             }
             /*
              * for other bit widths
@@ -9251,7 +9297,8 @@ void platform_get_parameters(void *platform,
         if (adev->dp_allowed_for_voice) {
             for (i = 0; i < MAX_CONTROLLERS; ++i) {
                 for (j = 0; j < MAX_STREAMS_PER_CONTROLLER; ++j) {
-                    if (my_data->ext_disp[i][j].type == EXT_DISPLAY_TYPE_DP) {
+                    if (my_data->ext_disp[i][j].type == EXT_DISPLAY_TYPE_DP
+                         ||  my_data->ext_disp[i][j].type == EXT_DISPLAY_TYPE_HDMI) {
                         enabled = true;
                         break;
                     }
@@ -10225,7 +10272,7 @@ static void platform_check_hdmi_backend_cfg(struct audio_device* adev,
     controller = usecase->stream.out->extconn.cs.controller;
     stream = usecase->stream.out->extconn.cs.stream;
 
-    if (controller < 0 || controller > MAX_CONTROLLERS ||
+    if (controller < 0 || controller >= MAX_CONTROLLERS ||
             stream < 0 || stream >= MAX_STREAMS_PER_CONTROLLER) {
         controller = 0;
         stream = 0;
@@ -11934,7 +11981,7 @@ int platform_set_edid_channels_configuration_v2(void *platform, int channels,
         return -EINVAL;
     }
 
-    if (controller < 0 || controller > MAX_CONTROLLERS ||
+    if (controller < 0 || controller >= MAX_CONTROLLERS ||
             stream < 0 || stream >= MAX_STREAMS_PER_CONTROLLER) {
         ALOGE("%s: Invalid controller/stream - %d/%d",
               __func__, controller, stream);
@@ -12051,7 +12098,7 @@ void platform_invalidate_hdmi_config_v2(void * platform, int controller, int str
     int backend_idx;
     snd_device_t snd_device;
 
-    if (controller < 0 || controller > MAX_CONTROLLERS ||
+    if (controller < 0 || controller >= MAX_CONTROLLERS ||
             stream < 0 || stream >= MAX_STREAMS_PER_CONTROLLER) {
         ALOGE("%s: Invalid controller/stream - %d/%d",
               __func__, controller, stream);
@@ -12954,6 +13001,15 @@ int platform_get_active_microphones(void *platform, unsigned int channels,
                                     audio_usecase_t uc_id,
                                     struct audio_microphone_characteristic_t *mic_array,
                                     size_t *mic_count) {
+
+    return platform_get_active_microphones_v2(platform, channels, uc_id, mic_array,
+                                                    mic_count, CAR_AUDIO_STREAM_INVALID);
+}
+
+int platform_get_active_microphones_v2(void *platform, unsigned int channels,
+                                    audio_usecase_t uc_id,
+                                    struct audio_microphone_characteristic_t *mic_array,
+                                    size_t *mic_count, int car_audio_stream) {
     struct platform_data *my_data = (struct platform_data *)platform;
     struct audio_usecase *usecase = get_usecase_from_list(my_data->adev, uc_id);
     if (mic_count == NULL || mic_array == NULL || usecase == NULL) {
@@ -12962,10 +13018,18 @@ int platform_get_active_microphones(void *platform, unsigned int channels,
     size_t max_mic_count = my_data->declared_mic_count;
     size_t actual_mic_count = 0;
     struct listnode devices;
+    snd_device_t active_input_snd_device = SND_DEVICE_NONE;
     list_init(&devices);
 
-    snd_device_t active_input_snd_device =
+    if ((car_audio_stream == CAR_AUDIO_STREAM_IN_PRIMARY) ||
+        (car_audio_stream == CAR_AUDIO_STREAM_IN_FRONT_PASSENGER) ||
+        (car_audio_stream == CAR_AUDIO_STREAM_IN_REAR_SEAT)) {
+        active_input_snd_device = audio_extn_auto_hal_get_snd_device_for_car_audio_stream(car_audio_stream);
+    }
+    else {
+        active_input_snd_device =
             platform_get_input_snd_device(platform, usecase->stream.in, &devices, USECASE_TYPE_MAX);
+    }
     if (active_input_snd_device == SND_DEVICE_NONE) {
         ALOGI("%s: No active microphones found", __func__);
         goto end;
@@ -13009,7 +13073,7 @@ int platform_get_controller_stream_from_params(struct str_parms *parms,
                                                int *controller, int *stream) {
     str_parms_get_int(parms, "controller", controller);
     str_parms_get_int(parms, "stream", stream);
-    if (*controller < 0 || *controller > MAX_CONTROLLERS ||
+    if (*controller < 0 || *controller >= MAX_CONTROLLERS ||
             *stream < 0 || *stream >= MAX_STREAMS_PER_CONTROLLER) {
         *controller = 0;
         *stream = 0;

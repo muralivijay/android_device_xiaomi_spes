@@ -591,7 +591,6 @@ void DRMConnector::ParseModeProperties(uint64_t blob_id, DRMConnectorInfo *info)
   stringstream stream(fmt_str);
   DRM_LOGI("stream str %s len %zu blob str %s len %d", stream.str().c_str(), stream.str().length(),
            static_cast<const char *>(blob->data), blob->length);
-
   string line = {};
   const string mode_name = "mode_name=";
   const string topology = "topology=";

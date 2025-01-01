@@ -38,7 +38,7 @@
 /*
 * Changes from Qualcomm Innovation Center are provided under the following license:
 *
-* Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
+* Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without
 * modification, are permitted (subject to the limitations in the
@@ -93,6 +93,7 @@
 #include "platform_api.h"
 #include "edid.h"
 #include "sound/compress_params.h"
+#include <pthread.h>
 
 #ifdef AUDIO_GKI_ENABLED
 #include "sound/audio_compressed_formats.h"
@@ -6641,6 +6642,7 @@ static void* power_policy_thread_func(void* arg __unused) {
     power_policy_init_config_t init_config;
     init_config.fp_in_set_power_policy = in_set_power_policy;
     init_config.fp_out_set_power_policy = out_set_power_policy;
+    init_config.fp_snd_card_status = snd_card_status;
     launch_power_policy(init_config);
 
 exit:
