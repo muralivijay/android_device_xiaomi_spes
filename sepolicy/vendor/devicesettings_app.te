@@ -8,3 +8,12 @@ allow devicesettings_app {
 allow devicesettings_app {
     vendor_sysfs_graphics
 }:file rw_file_perms;
+
+# Allow devicesettings_app to operate with vendor_sysfs_battery_supply
+allow devicesettings_app vendor_sysfs_battery_supply:dir search;
+allow devicesettings_app vendor_sysfs_battery_supply:file r_file_perms;
+
+allow devicesettings_app proc_stat:file { read open getattr };
+
+allow devicesettings_app vendor_sysfs_kgsl_gpuclk:file { read open getattr };
+allow devicesettings_app vendor_sysfs_kgsl:file { read open getattr };

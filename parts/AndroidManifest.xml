@@ -16,6 +16,7 @@
      limitations under the License.
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="org.lineageos.settings"
     android:versionCode="1"
     android:versionName="1.0"
@@ -26,6 +27,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" tools:ignore="ProtectedPermissions" />
 
     <application
         android:label="@string/device_settings_app_name"
@@ -161,5 +163,61 @@
                 android:value="1" />
         </activity>
 
+        <!-- GameBar Overlay -->
+        <activity
+            android:name=".gameoverlay.GameOverlaySettingsActivity"
+            android:label="@string/game_overlay_title"
+            android:theme="@style/Theme.SubSettingsBase"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.android.settings.action.IA_SETTINGS" />
+            </intent-filter>
+            <meta-data
+                android:name="com.android.settings.category"
+                android:value="com.android.settings.category.ia.apps" />
+            <meta-data
+                android:name="com.android.settings.summary"
+                android:resource="@string/game_overlay_summary" />
+        </activity>
+
+        <!-- GameBar Overlay Tile Service -->
+        <service
+            android:name=".gameoverlay.GameOverlayTileService"
+            android:label="@string/game_overlay_tile_label"
+            android:icon="@drawable/ic_gamebar_overlay_tile"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.service.quicksettings.TOGGLEABLE_TILE"
+                android:value="true" />
+        </service>
+
+      <!-- TileHandler activity -->
+        <activity
+            android:name=".TileHandlerActivity"
+            android:exported="true"
+            android:noHistory="true"
+            android:theme="@android:style/Theme.NoDisplay">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE_PREFERENCES" />
+            </intent-filter>
+        </activity>
+
+
+        <!-- GameBar BootReceiver -->
+        <receiver
+            android:name="org.lineageos.settings.gameoverlay.GameOverlayBootReceiver"
+            android:exported="true"
+            android:enabled="true"
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+                <category android:name="android.intent.category.DEFAULT" />
+             </intent-filter>
+        </receiver>
     </application>
 </manifest>
