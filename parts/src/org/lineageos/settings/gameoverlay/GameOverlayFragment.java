@@ -26,7 +26,7 @@ import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.SeekBarPreference;
-import androidx.preference.SwitchPreference;
+import androidx.preference.SwitchPreferenceCompat;
 
 import org.lineageos.settings.R;
 
@@ -34,26 +34,26 @@ public class GameOverlayFragment extends PreferenceFragmentCompat {
 
     private GameOverlay mOverlay;
 
-    private SwitchPreference mMasterSwitch;
+    private SwitchPreferenceCompat mMasterSwitch;
 
-    private SwitchPreference mFpsSwitch;
-    private SwitchPreference mBatteryTempSwitch;
-    private SwitchPreference mCpuUsageSwitch;
-    private SwitchPreference mCpuClockSwitch;
-    private SwitchPreference mCpuTempSwitch;
-    private SwitchPreference mRamSwitch;
+    private SwitchPreferenceCompat mFpsSwitch;
+    private SwitchPreferenceCompat mBatteryTempSwitch;
+    private SwitchPreferenceCompat mCpuUsageSwitch;
+    private SwitchPreferenceCompat mCpuClockSwitch;
+    private SwitchPreferenceCompat mCpuTempSwitch;
+    private SwitchPreferenceCompat mRamSwitch;
 
-    private SwitchPreference mGpuUsageSwitch;
-    private SwitchPreference mGpuClockSwitch;
-    private SwitchPreference mGpuTempSwitch;
+    private SwitchPreferenceCompat mGpuUsageSwitch;
+    private SwitchPreferenceCompat mGpuClockSwitch;
+    private SwitchPreferenceCompat mGpuTempSwitch;
 
     private Preference mCaptureStartPref;
     private Preference mCaptureStopPref;
     private Preference mCaptureExportPref;
 
-    private SwitchPreference mDoubleTapCapturePref;
-    private SwitchPreference mSingleTapTogglePref;
-    private SwitchPreference mLongPressEnablePref;
+    private SwitchPreferenceCompat mDoubleTapCapturePref;
+    private SwitchPreferenceCompat mSingleTapTogglePref;
+    private SwitchPreferenceCompat mLongPressEnablePref;
     private ListPreference  mLongPressTimeoutPref;
 
     private SeekBarPreference mTextSizePref;

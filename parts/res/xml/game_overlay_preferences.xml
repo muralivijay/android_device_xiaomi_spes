@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:settings="http://schemas.android.com/apk/res-auto">
 
-    <SwitchPreference
+    <SwitchPreferenceCompat
         android:key="game_overlay_enable"
         android:title="Enable GameBar Overlay"
         android:summary="@string/game_overlay_summary"
@@ -13,55 +13,55 @@
         android:title="Overlay Features"
         android:dependency="game_overlay_enable">
 
-        <SwitchPreference
+        <SwitchPreferenceCompat
             android:key="game_overlay_fps_enable"
             android:title="FPS Overlay"
             android:summary="Show current FPS on screen"
             android:defaultValue="false" />
 
-        <SwitchPreference
+        <SwitchPreferenceCompat
             android:key="game_overlay_temp_enable"
             android:title="Device Temperature"
             android:summary="Show device (battery) temperature"
             android:defaultValue="false" />
 
-        <SwitchPreference
+        <SwitchPreferenceCompat
             android:key="game_overlay_cpu_usage_enable"
             android:title="CPU Usage"
             android:summary="Show current CPU usage percentage"
             android:defaultValue="false" />
 
-        <SwitchPreference
+        <SwitchPreferenceCompat
             android:key="game_overlay_cpu_clock_enable"
             android:title="CPU Clock Speeds"
             android:summary="Show current CPU clock speeds for each core"
             android:defaultValue="false" />
 
-        <SwitchPreference
+        <SwitchPreferenceCompat
             android:key="game_overlay_cpu_temp_enable"
             android:title="CPU Temperature"
             android:summary="Show CPU temperature (thermal_zone0)"
             android:defaultValue="false" />
 
-        <SwitchPreference
+        <SwitchPreferenceCompat
             android:key="game_overlay_ram_enable"
             android:title="RAM Usage"
             android:summary="Show current RAM usage in MB"
             android:defaultValue="false" />
 
-        <SwitchPreference
+        <SwitchPreferenceCompat
             android:key="game_overlay_gpu_usage_enable"
             android:title="GPU Usage"
             android:summary="Show GPU usage percentage"
             android:defaultValue="false" />
 
-        <SwitchPreference
+        <SwitchPreferenceCompat
             android:key="game_overlay_gpu_clock_enable"
             android:title="GPU Clock Speed"
             android:summary="Show current GPU clock frequency"
             android:defaultValue="false" />
 
-        <SwitchPreference
+        <SwitchPreferenceCompat
             android:key="game_overlay_gpu_temp_enable"
             android:title="GPU Temperature"
             android:summary="Show current GPU temperature"
@@ -170,19 +170,19 @@
         android:title="Overlay Gesture Controls"
         android:dependency="game_overlay_enable">
 
-        <SwitchPreference
+        <SwitchPreferenceCompat
             android:key="game_overlay_single_tap_toggle"
             android:title="Enable Single Tap to Toggle"
             android:summary="Tap once to switch between full and minimal overlay formats"
             android:defaultValue="false" />
 
-        <SwitchPreference
+        <SwitchPreferenceCompat
             android:key="game_overlay_doubletap_capture"
             android:title="Enable Double Tap to Capture"
             android:summary="Double-tap overlay to start/stop capture logs"
             android:defaultValue="false" />
 
-        <SwitchPreference
+        <SwitchPreferenceCompat
             android:key="game_overlay_longpress_enable"
             android:title="Enable Long Press"
             android:summary="Long-press overlay to access Gamebar settings"
