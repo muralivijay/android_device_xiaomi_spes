@@ -55,8 +55,10 @@ function blob_fixup() {
             "${SIGSCAN}" -p "13 0A 00 94" -P "1F 20 03 D5" -f "${2}"
             ;;
         vendor/lib64/camera/components/com.qti.node.mialgocontrol.so)
+            if ! readelf -d "${2}" | grep -q "libpiex_shim.so"; then
+                "${PATCHELF}" --add-needed "libpiex_shim.so" "${2}"
+            fi
             llvm-strip --strip-debug  "${2}"
-            "${PATCHELF}" --add-needed "libpiex_shim.so" "${2}"
             ;;
     esac
 }
