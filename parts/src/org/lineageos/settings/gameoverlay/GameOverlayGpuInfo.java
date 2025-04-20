@@ -24,7 +24,7 @@ public class GameOverlayGpuInfo {
 
     private static final String GPU_USAGE_PATH = "/sys/class/kgsl/kgsl-3d0/gpu_busy_percentage";
     private static final String GPU_CLOCK_PATH = "/sys/class/kgsl/kgsl-3d0/gpuclk";
-    private static final String GPU_TEMP_PATH  = "/sys/class/kgsl/kgsl-3d0/temp";
+    private static final String GPU_TEMP_PATH  = "/sys/class/thermal/thermal_zone16/temp";
 
     public static String getGpuUsage() {
         String line = readLine(GPU_USAGE_PATH);
