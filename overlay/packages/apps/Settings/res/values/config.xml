@@ -24,7 +24,5 @@
 
     <!-- Battery Health Nodes -->
     <bool name="config_supportBatteryHealth">true</bool>
-    <string name="config_batCurCap" translatable="false">/sys/class/power_supply/bms/charge_counter</string>
-    <string name="config_batDesCap" translatable="false">/sys/class/power_supply/bms/charge_full</string>
-    <string name="config_batChargeCycle" translatable="false">/sys/class/power_supply/bms/cycle_count</string>
+
 </resources>
