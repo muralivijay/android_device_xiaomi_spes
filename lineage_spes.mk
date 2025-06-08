@@ -35,4 +35,4 @@ PRODUCT_PACKAGES += \
     vendor.lineage.livedisplay@2.0-service-sdm
 
 # Fingerprint
-BUILD_FINGERPRINT := "Redmi/spes/spes:13/TKQ1.221114.001/V816.0.8.0.TGCMIXM:user/release-keys"
+BUILD_FINGERPRINT := "Redmi/spes/spes:13/TKQ1.221114.001/V816.0.11.0.TGKMIXM:user/release-keys"
