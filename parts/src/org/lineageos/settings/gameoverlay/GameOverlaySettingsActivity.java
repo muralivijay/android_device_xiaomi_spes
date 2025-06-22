@@ -16,6 +16,8 @@
 
 package org.lineageos.settings.gameoverlay;
 
+import android.app.AppOpsManager;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -34,12 +36,38 @@ public class GameOverlaySettingsActivity extends CollapsingToolbarBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_overlay);
         setTitle(getString(R.string.game_overlay_title));
-
+        
+        // Grant usage stats permission automatically (since we're a system app)
+        grantUsageStatsPermission();
+        
+        // Check and request overlay permission if needed
         if (!Settings.canDrawOverlays(this)) {
-            Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-                    Uri.parse("package:" + getPackageName()));
-            startActivityForResult(intent, OVERLAY_PERMISSION_REQUEST_CODE);
+            requestOverlayPermission();
         }
+    }
+
+    private void grantUsageStatsPermission() {
+        AppOpsManager appOps = (AppOpsManager) getSystemService(Context.APP_OPS_SERVICE);
+        int mode = appOps.checkOpNoThrow(
+            AppOpsManager.OPSTR_GET_USAGE_STATS,
+            android.os.Process.myUid(),
+            getPackageName()
+        );
+
+        if (mode != AppOpsManager.MODE_ALLOWED) {
+            appOps.setMode(
+                AppOpsManager.OPSTR_GET_USAGE_STATS,
+                android.os.Process.myUid(),
+                getPackageName(),
+                AppOpsManager.MODE_ALLOWED
+            );
+        }
+    }
+
+    private void requestOverlayPermission() {
+        Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                Uri.parse("package:" + getPackageName()));
+        startActivityForResult(intent, OVERLAY_PERMISSION_REQUEST_CODE);
     }
 
     @Override
