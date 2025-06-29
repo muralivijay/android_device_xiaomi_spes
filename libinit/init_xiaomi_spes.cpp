@@ -6,7 +6,6 @@
 
 #include <libinit_dalvik_heap.h>
 #include <libinit_variant.h>
-
 #include "vendor_init.h"
 
 static const variant_info_t spes_info = {
@@ -38,7 +37,7 @@ static const variant_info_t spes_in_info = {
 };
 
 static const variant_info_t spesn_info = {
-    .hwc_value = "",
+    .hwc_value = "Global",
     .sku_value = "k7tn",
 
     .brand = "Redmi",
