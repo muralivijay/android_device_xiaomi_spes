@@ -41,7 +41,7 @@ ro.lmk.thrashing_limit_decay=25
 ro.lmk.thrashing_limit_critical=30
 ro.lmk.psi_complete_stall_ms=120
 ro.lmk.psi_partial_stall_ms=50
-ro.lmk.filecache_min_kb=300000
+ro.lmk.filecache_min_kb=150000
 
 # Display
 debug.sf.disable_backpressure=1
