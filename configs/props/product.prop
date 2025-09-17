@@ -33,6 +33,9 @@ bluetooth.profile.sap.server.enabled?=true
 bluetooth.profile.ccp.server.enabled?=true
 bluetooth.profile.vcp.controller.enabled?=true
 
+# Gboard configuration
+ro.com.google.ime.kb_pad_port_b=1
+
 # LMKD
 ro.lmk.kill_heaviest_task=true
 ro.lmk.swap_util_max=90
