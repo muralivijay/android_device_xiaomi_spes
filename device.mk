@@ -195,6 +195,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
 PRODUCT_DEX_PREOPT_DEFAULT_COMPILER_FILTER := everything
 USE_DEX2OAT_DEBUG := false
+# Enable whole-program R8 Java optimizations for SystemUI and system_server
+SYSTEM_OPTIMIZE_JAVA := true
+SYSTEMUI_OPTIMIZE_JAVA := true
 
 # Debug Tools
 $(call inherit-product, hardware/samsung-ext/interfaces/debug-tools/debug.mk)
