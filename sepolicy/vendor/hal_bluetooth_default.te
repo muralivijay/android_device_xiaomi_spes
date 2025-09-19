@@ -1,5 +1,8 @@
 # Allow hal_bluetooth_default to read files in vendor_wifi_vendor_data_file
 r_dir_file(hal_bluetooth_default, vendor_wifi_vendor_data_file)
 
+allow hal_bluetooth_default vendor_bt_data_file:dir search;
+allow hal_bluetooth_default vendor_diag_device:chr_file { read write };
+
 set_prop(hal_bluetooth_default, vendor_btmac_prop)
 set_prop(hal_bluetooth_default, vendor_wifimac_prop)
