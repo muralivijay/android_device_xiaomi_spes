@@ -1,4 +1,4 @@
-# All unpinned blobs below are extracted from miui_SPESNGlobal_OS1.0.11.0.TGKMIXM_f5baa0b92b_13.0. 
+# All unpinned blobs below are extracted from miui_SPESNGlobal_OS1.0.11.0.TGKMIXM_f5baa0b92b_13.0.
 
 # ACDB
 vendor/etc/acdbdata/IDP/bengal-scubaidp-snd-card/IDP_Scuba_Bluetooth_cal.acdb
@@ -1050,7 +1050,7 @@ vendor/etc/init/port-bridge.rc
 vendor/etc/init/qcrild.rc
 vendor/etc/init/ssgtzd.rc
 vendor/etc/init/vendor.qti.rmt_storage.rc
-vendor/etc/init/vendor.qti.tftp.rc
+vendor/etc/init/vendor.qti.tftp.rc|c0362f4780d417aaae2b739ceb763c7d623089ce
 vendor/etc/seccomp_policy/atfwd@2.0.policy
 vendor/etc/ssg/ta_config.json
 vendor/etc/ssg/tz_whitelist.json
