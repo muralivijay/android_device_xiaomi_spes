@@ -686,32 +686,32 @@ vendor/etc/sap.conf
 vendor/etc/xtwifi.conf
 
 # Graphics Adreno - from v757 by tryigit
--vendor/lib/egl/eglSubDriverAndroid.so
--vendor/lib/egl/libEGL_adreno.so
--vendor/lib/egl/libGLESv1_CM_adreno.so
--vendor/lib/egl/libGLESv2_adreno.so
--vendor/lib/egl/libq3dtools_adreno.so
--vendor/lib/egl/libq3dtools_esx.so
--vendor/lib/libadreno_app_profiles.so
--vendor/lib/libadreno_utils.so
--vendor/lib/libC2D2.so
--vendor/lib/libc2d30_bltlib.so
--vendor/lib/libgsl.so
--vendor/lib/libllvm-glnext.so
--vendor/lib/libllvm-qgl.so
--vendor/lib64/egl/eglSubDriverAndroid.so
--vendor/lib64/egl/libEGL_adreno.so
--vendor/lib64/egl/libGLESv1_CM_adreno.so
--vendor/lib64/egl/libGLESv2_adreno.so
--vendor/lib64/egl/libq3dtools_adreno.so
--vendor/lib64/egl/libq3dtools_esx.so
--vendor/lib64/libadreno_app_profiles.so
--vendor/lib64/libadreno_utils.so
--vendor/lib64/libC2D2.so
--vendor/lib64/libc2d30_bltlib.so
--vendor/lib64/libgsl.so
--vendor/lib64/libllvm-glnext.so
--vendor/lib64/libllvm-qgl.so
+-vendor/lib/egl/eglSubDriverAndroid.so|9f76906266649d5c8bb98c693c9dbfa87e06d720
+-vendor/lib/egl/libEGL_adreno.so|00675b9ebff3fc836e166ef22991d12684bc0448
+-vendor/lib/egl/libGLESv1_CM_adreno.so|1d7f7b8bc6b177cd7eb3205212f7d20fa6db04a4
+-vendor/lib/egl/libGLESv2_adreno.so|b8080669f8a7139d3d7febb71e1fe287a934f163
+-vendor/lib/egl/libq3dtools_adreno.so|323e297790439794d50c0a2901e5129de2bdef4e
+-vendor/lib/egl/libq3dtools_esx.so|e8138832bb59fae3f7a9ead2db5e3eedd95fd820
+-vendor/lib/libC2D2.so|909c06c3f780da8ea77e8bd0e328e444db19aefd
+-vendor/lib/libadreno_app_profiles.so|a8852a9a2bf934401f0d0c4d7b79687dad3a100e
+-vendor/lib/libadreno_utils.so|125545343b3d7e2f65bddac3b1aa33e1794d9172
+-vendor/lib/libc2d30_bltlib.so|64d8012ee00227cf3bafc0f510e1daac3d0215f2
+-vendor/lib/libgsl.so|fcb25c397cef45a30239d82355815536c91d94e8
+-vendor/lib/libllvm-glnext.so|a71bf7c86c1d7e0f983712827d662fdf35ec3f7d
+-vendor/lib/libllvm-qgl.so|b6d221cccc7fc1d64628ba7edf22f11197062191
+-vendor/lib64/egl/eglSubDriverAndroid.so|0acaba7a64fb3522af5119bcdf50c12bda8e3d11
+-vendor/lib64/egl/libEGL_adreno.so|6960a3645afe097a25dd1d2bf7914a804ba2e787
+-vendor/lib64/egl/libGLESv1_CM_adreno.so|d02fd3da6d3135f4aeccabb2a861e11650e7d8e9
+-vendor/lib64/egl/libGLESv2_adreno.so|ac20806e23e3c56b471fdd34dc369a9707ccb376
+-vendor/lib64/egl/libq3dtools_adreno.so|2d698f5d23a324871f91f173418e1775948baf0c
+-vendor/lib64/egl/libq3dtools_esx.so|ed4bb351c0475a193ff2c90c1a735d801bfda57f
+-vendor/lib64/libC2D2.so|f4f572f85fdd2dd741112060a8fdf49cb646a91d
+-vendor/lib64/libadreno_app_profiles.so|e40e50eda680458a6016b71f4c00ec8a891ae9cf
+-vendor/lib64/libadreno_utils.so|2b75abcaba8e0801e878201328126e0b67689459
+-vendor/lib64/libc2d30_bltlib.so|46512132c1ba8f72d58b19ec3e754503fa1653d6
+-vendor/lib64/libgsl.so|c914c3fde7c6c98e7f5388802074953c5588b4e2
+-vendor/lib64/libllvm-glnext.so|0a2bae6ec3516e396deb7810b0a45ec2bbd0a22a
+-vendor/lib64/libllvm-qgl.so|44f2e97ab4436be6abef27b2684b3ec6349b0294
 
 # Graphics Adreno
 -vendor/lib/libCB.so
@@ -734,8 +734,8 @@ vendor/firmware/a610_zap.mdt
 vendor/firmware/a630_sqe.fw
 
 # Graphics Vulkan - from v757 by tryigit
--vendor/lib/hw/vulkan.adreno.so
--vendor/lib64/hw/vulkan.adreno.so
+-vendor/lib/hw/vulkan.adreno.so|9f4fd884bb4e947264487f396b9c747b660c30a7
+-vendor/lib64/hw/vulkan.adreno.so|70944c6f369d720274165d5839e5202ffd3eb727
 
 # HotwordEnrollment
 -product/priv-app/HotwordEnrollmentOKGoogleHEXAGON_WIDEBAND/HotwordEnrollmentOKGoogleHEXAGON_WIDEBAND.apk
@@ -1236,8 +1236,8 @@ vendor/etc/thermal-normal.conf
 vendor/etc/thermal-tgame.conf
 
 # Thermal configs - rework by etylix
-vendor/etc/thermal-normal.conf
-vendor/etc/thermal-tgame.conf
+vendor/etc/thermal-normal.conf|9c95c0ec7aacfc7669b7e07eec2b147c9cc27070
+vendor/etc/thermal-tgame.conf|585f1cebc119202b62577956e92a2152e8ff1149
 
 # Thermal configs
 vendor/etc/thermal-4k.conf
