@@ -756,10 +756,14 @@ vendor/lib64/hw/vulkan.adreno.so|70944c6f369d720274165d5839e5202ffd3eb727
 system_ext/etc/permissions/com.android.hotwordenrollment.common.util.xml
 system_ext/framework/com.android.hotwordenrollment.common.util.jar
 
+# IMS (fog - miui V14.0.3.0.TGEMIXM release-keys)
+-system_ext/app/ImsRcsService/ImsRcsService.apk|88c4688841db8daf452a5332f7f5680f0e0003d0
+system_ext/etc/permissions/vendor.qti.ims.rcsservice.xml|7ce9e6ccb5026b0aa87b0eb94a20448e2d4c481c
+
+# IMS (spes-miui SPESGlobal V14.0.2.0-A13)
+-system_ext/app/uceShimService/uceShimService.apk|298731c03407f387a70cc9f3ea487a29dd383dcf
+
 # IMS
--system_ext/app/ImsRcsService/ImsRcsService.apk
--system_ext/app/uceShimService/uceShimService.apk
-system_ext/etc/permissions/vendor.qti.ims.rcsservice.xml
 system_ext/framework/vendor.qti.ims.connection-V1.0-java.jar
 system_ext/framework/vendor.qti.ims.factory-V2.0-java.jar
 system_ext/framework/vendor.qti.ims.factory-V2.1-java.jar
