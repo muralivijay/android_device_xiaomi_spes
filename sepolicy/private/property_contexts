@@ -16,6 +16,7 @@ persist.radio.meid             u:object_r:deviceid_prop:s0
 ro.ril.miui.imei               u:object_r:deviceid_prop:s0
 ro.ril.oem.imei                u:object_r:deviceid_prop:s0
 ro.ril.oem.meid                u:object_r:deviceid_prop:s0
+ro.ril.factory_id              u:object_r:exported_system_prop:s0
 
 # Fingerprint
 sys.fp.miui.token              u:object_r:exported_system_prop:s0
@@ -28,6 +29,9 @@ ro.miui.                u:object_r:exported_system_prop:s0
 
 # Hardware
 ro.hardware.chipname           u:object_r:exported_default_prop:s0
+
+# WiFi
+ro.wlan.chip                   u:object_r:vendor_public_vendor_default_prop:s0
 
 # WiFi Display
 persist.vendor.setWFDInfo.     u:object_r:vendor_wfd_sys_debug_prop:s0
