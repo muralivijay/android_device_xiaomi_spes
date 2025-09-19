@@ -278,7 +278,6 @@ PRODUCT_PACKAGES += \
 # Hotword Enrollment
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/permissions/privapp-permissions-google-hotword.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-google-hotword.xml
-    
 
 # Xiaomiparts
 PRODUCT_COPY_FILES += \
@@ -447,6 +446,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.sensors@2.0-ScopedWakelock.vendor \
     android.hardware.sensors@2.1-service.xiaomi-multihal \
+    android.frameworks.sensorservice@1.0 \
     libsensorndkbridge
 
 # Service Tracker
