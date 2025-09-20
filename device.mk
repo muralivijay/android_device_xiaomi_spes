@@ -244,6 +244,11 @@ PRODUCT_PACKAGES += \
     android.hardware.gnss.measurement_corrections@1.1.vendor \
     android.hardware.gnss.visibility_control@1.0.vendor
 
+ifeq ($(WITH_GMS),true)
+# Inherit Google Camera
+$(call inherit-product-if-exists, vendor/GoogleCamera/config.mk)
+endif
+
 # Fingerprint
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.3-service.xiaomi
