@@ -20,4 +20,16 @@ git clone --depth=1 https://github.com/LineageOS/android_hardware_xiaomi.git -b 
 
 # GcamBSG
 echo -e "${color}Setup gcamBSG ${end}"
-git clone --depth=1 https://gitlab.com/GustavoMends/vendor_GoogleCamera.git -b sg vendor/GoogleCamera
+
+read -p "Do you want to enable GCam support? (yes/no): " USER_INPUT
+
+if [[ "$USER_INPUT" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    export ENABLE_GCAM=true
+    echo "GCam support enabled."
+    echo "Cloning GCam source..."
+    git clone --depth=1 https://gitlab.com/GustavoMends/vendor_GoogleCamera.git -b sg vendor/GoogleCamera
+else
+    export ENABLE_GCAM=false
+    echo "GCam support disabled. Skipping or Removing if GCam source exits."
+    rm -rf vendor/GoogleCamera
+fi
