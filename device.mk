@@ -244,9 +244,9 @@ PRODUCT_PACKAGES += \
     android.hardware.gnss.measurement_corrections@1.1.vendor \
     android.hardware.gnss.visibility_control@1.0.vendor
 
-ifeq ($(ENABLE_GCAM),true)
-# Inherit Google Camera
-$(call inherit-product-if-exists, vendor/GoogleCamera/config.mk)
+ifeq ($(ENABLE_LEICACAM),true)
+# Call the Leica Camera setup
+$(call inherit-product-if-exists, vendor/xiaomi/spes-leicacamera/spes-leicacamera-vendor.mk)
 endif
 
 # Fingerprint

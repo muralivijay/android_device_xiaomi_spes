@@ -19,18 +19,18 @@ git clone --depth=1 https://github.com/muralivijay/android_vendor_xiaomi_spes.gi
 git clone --depth=1 https://github.com/LineageOS/android_hardware_xiaomi.git -b lineage-20 hardware/xiaomi
 
 # GcamBSG
-echo -e "${color}Setup gcamBSG ${end}"
-read -p "Do you want to enable GCam support? (yes/no): " USER_INPUT
+echo -e "${color}Setup LeicaCamera ${end}"
+read -p "Do you want to enable LeicaCamera support? (yes/no): " USER_INPUT
 
 if [[ "$USER_INPUT" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    export ENABLE_GCAM=true
-    echo "GCam support enabled."
+    export ENABLE_LEICACAM=true
+    echo "Leicacamera support enabled."
     echo "Cloning GCam source..."
-    git clone --depth=1 https://gitlab.com/GustavoMends/vendor_GoogleCamera.git -b sg vendor/GoogleCamera
+    git clone --depth=1 https://gitlab.com/muralivijay/android-vendor-xiaomi-spes-leicacamera.git -b main vendor/xiaomi/spes-leicacamera
 else
-    export ENABLE_GCAM=false
-    echo "GCam support disabled. Skipping or Removing if GCam source exits."
-    rm -rf vendor/GoogleCamera
+    export ENABLE_LEICACAM=false
+    echo "Leicacamera support disabled. Skipping or Removing Leicacamera source if exits."
+    rm -rf vendor/xiaomi/spes-leicacamera
 fi
 
 # Gapps

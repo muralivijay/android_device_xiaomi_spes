@@ -291,3 +291,8 @@ WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 # Inherit from the proprietary version
 include vendor/xiaomi/spes/BoardConfigVendor.mk
+
+ifeq ($(ENABLE_LEICACAM),true)
+# Inherit from proprietary files for Leica Camera
+include vendor/xiaomi/spes-leicacamera/BoardConfigVendor.mk
+endif
