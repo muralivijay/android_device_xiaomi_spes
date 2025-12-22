@@ -244,8 +244,11 @@ PRODUCT_PACKAGES += \
     android.hardware.gnss.measurement_corrections@1.1.vendor \
     android.hardware.gnss.visibility_control@1.0.vendor
 
-ifeq ($(ENABLE_GCAM),true)
+ifeq ($(wildcard vendor/gapps/Android.bp),)
+$(info gcam not enabled . building Camera2.)
+else
 # Inherit Google Camera
+$(info gapps  enabled . building GoogleCamera  go as default camera app.)
 $(call inherit-product-if-exists, vendor/GoogleCamera/config.mk)
 endif
 
