@@ -17,10 +17,12 @@ typedef struct dalvik_heap_info {
     std::string heapmaxfree;
     std::string heaptargetutilization;
     std::string foreground-heap-growth-multiplier;
+    std::string enable_time_based_gc_trigger;
     std::string usejit;
     std::string jitmaxsize;
     std::string jitinitialsize;
     std::string jitthreshold;
+    std::string parallel-image-loading;
     std::string madvise.vdexfile.size;
     std::string madvise.odexfile.size;
     std::string usap_pool_enabled;

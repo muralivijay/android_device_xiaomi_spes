@@ -16,10 +16,12 @@
 #define HEAPMAXFREE_PROP "dalvik.vm.heapmaxfree"
 #define HEAPTARGETUTILIZATION_PROP "dalvik.vm.heaptargetutilization"
 #define FOREGROUND_HEAP_GROWTH_MULTIPLIER_PROP "dalvik.vm.foreground-heap-growth-multiplier"
+#define ENABLE_TIME_BASED_GC_TRIGGER_PROP "dalvik.vm.enable_time_based_gc_trigger"
 #define USEJIT_PROP "dalvik.vm.usejit"
 #define JITMAXSIZE_PROP "dalvik.vm.jitmaxsize"
 #define JITINITIALSIZE_PROP "dalvik.vm.jitinitialsize"
 #define JITTHRESHOLD_PROP "dalvik.vm.jitthreshold"
+#define PARALLEL_IMAGE_LOADING_PROP "dalvik.vm.parallel-image-loading"
 #define MADVISE_VDEXFILE_SIZE_PROP "dalvik.vm.madvise.vdexfile.size"
 #define MADVISE_ODEXFILE_SIZE_PROP "dalvik.vm.madvise.odexfile.size"
 #define USAP_POOL_ENABLED_PROP "dalvik.vm.usap_pool_enabled"
@@ -34,9 +36,23 @@ static const dalvik_heap_info_t dalvik_heap_info_6144 = {
     .heapstartsize = "16m",
     .heapgrowthlimit = "256m",
     .heapsize = "512m",
-    .heapminfree = "8m",
-    .heapmaxfree = "32m",
-    .heaptargetutilization = "0.5",
+    .heapminfree = "4m",
+    .heapmaxfree = "48m",
+    .heaptargetutilization = "0.75",
+    .foreground-heap-growth-multiplier = "1.0",
+    .enable_time_based_gc_trigger = "true"
+    .usejit = "true",
+    .jitmaxsize = "256m",
+    .jitinitialsize = "32m",
+    .jitthreshold = "10000",
+    .parallel-image-loading = "true",
+    .madvise.vdexfile.size = "104857600",
+    .madvise.odexfile.size = "104857600",
+    .usap_pool_enabled =  "true",
+    .usap_pool_size_min = "1".
+    .usap_pool_size_max = " 2",
+    .usap_refill_threshold = "1",
+    .usap_pool_refill_delay_ms = "3000",
 };
 
 static const dalvik_heap_info_t dalvik_heap_info_4096 = {
@@ -78,10 +94,12 @@ void set_dalvik_heap() {
     property_override(HEAPMINFREE_PROP, dhi->heapminfree);
     property_override(HEAPMAXFREE_PROP, dhi->heapmaxfree);
     property_override(FOREGROUND_HEAP_GROWTH_MULTIPLIER_PROP, dhi->foreground-heap-growth-multiplier);
+    property_override(ENABLE_TIME_BASED_GC_TRIGGER_PROP, dhi->enable_time_based_gc_trigger);
     property_override(USEJIT_PROP, dhi->usejit);
     property_override(JITMAXSIZE_PROP, dhi->jitmaxsize);
     property_override(JITINITIALSIZE_PROP, dhi->jitinitialsize);
     property_override(JITTHRESHOLD_PROP, dhi->jitthreshold);
+    property_override(PARALLEL_IMAGE_LOADING_PROP, dhi->parallel-image-loading);
     property_override(MADVISE_VDEXFILE_SIZE_PROP, dhi->madvise.vdexfile.size);
     property_override(MADVISE_ODEXFILE_SIZE_PROP, dhi->madvise.odexfile.size);
     property_override(USAP_POOL_ENABLED_PROP, dhi->usap_pool_enabled);
