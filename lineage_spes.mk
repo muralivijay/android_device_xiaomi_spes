@@ -29,6 +29,9 @@ TARGET_BOOT_ANIMATION_RES := 1080
 # Disable EPPE
 TARGET_DISABLE_EPPE := true
 
+# Android GO
+$(call inherit-product, $(SRC_TARGET_DIR)/product/go_defaults.mk)
+
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay-lineage
 
