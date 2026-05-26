@@ -40,12 +40,24 @@ static const dalvik_heap_info_t dalvik_heap_info_6144 = {
 };
 
 static const dalvik_heap_info_t dalvik_heap_info_4096 = {
-    .heapstartsize = "8m",
-    .heapgrowthlimit = "192m",
+    .heapstartsize = "12m",
+    .heapgrowthlimit = "256m",
     .heapsize = "512m",
-    .heapminfree = "8m",
-    .heapmaxfree = "16m",
-    .heaptargetutilization = "0.6",
+    .heapminfree = "4m",
+    .heapmaxfree = "32m",
+    .heaptargetutilization = "0.75",
+    .foreground-heap-growth-multiplier = "0.5",
+    .usejit = "true",
+    .jitmaxsize = "128m",
+    .jitinitialsize = "16m",
+    .jitthreshold = "15000",
+    .madvise.vdexfile.size = "104857600",
+    .madvise.odexfile.size = "104857600",
+    .usap_pool_enabled =  "true",
+    .usap_pool_size_min = "1".
+    .usap_pool_size_max = " 2",
+    .usap_refill_threshold = "1",
+    .usap_pool_refill_delay_ms = "3000",
 };
 
 void set_dalvik_heap() {
