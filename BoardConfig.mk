@@ -260,7 +260,11 @@ ENABLE_VENDOR_RIL_SERVICE := true
 
 # Recovery
 BOARD_USES_RECOVERY_AS_BOOT := true
+ifeq ($(DEVICE_USE_CUSTOM_USERDATA_PARTITION),true)
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/userdata/fstab.qcom
+else
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.qcom
+endif
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 
 # Screen density

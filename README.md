@@ -4,6 +4,8 @@ The Xiaomi Redmi Note 11 (codenamed _"spes/spesn"_) is a mid range smartphone fr
 
 Redmi Note 11 was announced and released in January/February 2022.
 
+to use custom userdata partition export flag  DEVICE_USE_CUSTOM_USERDATA_PARTITION true in your build environment.
+
 ## Device specifications
 
  Device       | Xiaomi Redmi Note 11
