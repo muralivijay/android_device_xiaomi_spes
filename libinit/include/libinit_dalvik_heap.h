@@ -30,6 +30,7 @@ typedef struct dalvik_heap_info {
     std::string usap_pool_size_max;
     std::string usap_refill_threshold;
     std::string usap_pool_refill_delay_ms;
+    std::string pinner_quota;
 } dalvik_heap_info_t;
 
 void set_dalvik_heap(void);
