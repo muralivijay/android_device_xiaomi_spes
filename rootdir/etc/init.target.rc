@@ -50,6 +50,9 @@ on init
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
     symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
 
+    # Fix kernel panic: disable dynamic watermark boosting
+    write /proc/sys/vm/watermark_boost_factor 0
+
 on fs
     start hwservicemanager
     mount_all /vendor/etc/fstab.qcom --early
