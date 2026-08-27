@@ -435,8 +435,7 @@ PRODUCT_PACKAGES += \
     libqti_vndfwk_detect \
     libqti_vndfwk_detect.vendor \
     libvndfwk_detect_jni.qti \
-    libsqlite.vendor \
-    libvndfwk_detect_jni.qti.vendor
+    libsqlite.vendor
 
 # Quick Tap
 TARGET_SUPPORTS_QUICK_TAP := true
