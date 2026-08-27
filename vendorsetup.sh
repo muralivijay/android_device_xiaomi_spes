@@ -29,9 +29,6 @@ echo -e "${color}cloning display HAL ${end}"
 rm -rf hardware/qcom-caf/sm8250/display
 git clone https://github.com/muralivijay/android_hardware_qcom_display.git -b lineage-23.2-caf-sm8250 hardware/qcom-caf/sm8250/display
 
-# Debug Tools
-git clone https://github.com/Roynas-Android-Playground/hardware_samsung-extra_interfaces hardware/samsung-ext/interfaces
-
 # Sepolicy fix for imsrcsd
 echo -e "${color}Switch back to legacy imsrcsd sepolicy${end}"
 rm -rf device/qcom/sepolicy_vndr/legacy-um/qva/vendor/bengal/ims/imsservice.te

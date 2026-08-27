@@ -201,9 +201,6 @@ USE_DEX2OAT_DEBUG := false
 SYSTEM_OPTIMIZE_JAVA := true
 SYSTEMUI_OPTIMIZE_JAVA := true
 
-# Debug Tools
-$(call inherit-product, hardware/samsung-ext/interfaces/debug-tools/debug.mk)
-
 # Display
 PRODUCT_PACKAGES += \
     android.hardware.graphics.mapper@3.0-impl-qti-display \

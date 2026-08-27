@@ -99,9 +99,6 @@ TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/configs/config.fs
 BOARD_KERNEL_SEPARATED_DTBO := true
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 
-# Debug Tools
-include hardware/samsung-ext/interfaces/sepolicy/SEPolicy.mk
-
 # Disable sparse on all filesystem images
 TARGET_USERIMAGES_SPARSE_EXT_DISABLED := true
 TARGET_USERIMAGES_SPARSE_F2FS_DISABLED := true
