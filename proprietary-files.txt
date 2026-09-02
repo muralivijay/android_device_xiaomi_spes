@@ -408,9 +408,6 @@ vendor/etc/camera/vidhance_calibration
 -vendor/lib64/libmmcamera_mfnr.so
 -vendor/lib64/libmmcamera_mfnr_t4.so
 
-# Consumer IR
--vendor/lib64/hw/consumerir.default.so:vendor/lib64/hw/consumerir.bengal.so
-
 # CDSP
 -vendor/bin/cdsprpcd
 vendor/etc/init/vendor.qti.cdsprpc-service.rc
