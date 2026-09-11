@@ -4,7 +4,7 @@ cc_library_shared {
         "libnotifyaudiohal.cpp",
     ],
     shared_libs: [
-        "android.hardware.audio@6.0",
+        "android.hardware.audio@7.0",
         "libhidlbase",
         "liblog",
         "libutils",

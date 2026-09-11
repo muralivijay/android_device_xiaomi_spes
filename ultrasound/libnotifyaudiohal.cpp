@@ -6,14 +6,14 @@
 
 #define LOG_TAG "libnotifyaudiohal"
 
-#include <android/hardware/audio/6.0/IDevicesFactory.h>
+#include <android/hardware/audio/7.0/IDevicesFactory.h>
 #include <log/log.h>
 #include <string.h>
 
 using android::sp;
-using android::hardware::audio::V6_0::IDevicesFactory;
-using android::hardware::audio::V6_0::IPrimaryDevice;
-using android::hardware::audio::V6_0::Result;
+using android::hardware::audio::V7_0::IDevicesFactory;
+using android::hardware::audio::V7_0::IPrimaryDevice;
+using android::hardware::audio::V7_0::Result;
 
 static void ultrasound_enable(int enable) {
     ALOGD("ultrasound_enable: %d", enable);
