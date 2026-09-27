@@ -28,6 +28,5 @@ binder_call(devicesettings_app, gpuservice)
 allow devicesettings_app sysfs_leds:dir search;
 allow devicesettings_app {
   cgroup
-  sysfs_leds
   sysfs_thermal
 }:{ file lnk_file } rw_file_perms;
