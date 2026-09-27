@@ -54,6 +54,10 @@ persist.dbg.volte_avail_ovr=1
 persist.dbg.vt_avail_ovr=1
 persist.dbg.wfc_avail_ovr=1
 
+# Infinity
+ro.infinity.soc=Snapdragon 680
+ro.infinity.camera=50MP + 13MP + 8MP + 2MP + 2MP
+
 # Iorapd
 ro.iorapd.enable=false
 iorapd.perfetto.enable=false
