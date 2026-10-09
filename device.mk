@@ -104,7 +104,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     audio.bluetooth.default \
     audio.r_submix.default \
-    audio.usb.default
+    audio.usb.default \
+    audio.primary.bengal
 
 PRODUCT_PACKAGES += \
     libaudioroute \
@@ -116,7 +117,17 @@ PRODUCT_PACKAGES += \
     libqcomvisualizer \
     libqcomvoiceprocessing \
     libstagefright_softomx_plugin.vendor \
-    libtinycompress
+    libtinycompress \
+    libsndmonitor \
+    libcomprcapture \
+    libssrec \
+    libhdmiedid \
+    libspkrprot \
+    libcirrusspkrprot \
+    liba2dpoffload \
+    libexthwplugin \
+    libhfp \
+    libbatterylistener
 
 # Audio configs
 PRODUCT_COPY_FILES += \

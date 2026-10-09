@@ -94,11 +94,9 @@ system_ext/framework/audiosphere.jar
 -vendor/lib/soundfx/libshoebox.so
 
 # Audio HAL
--vendor/lib/hw/audio.primary.bengal.so
 -vendor/lib/libaudio_log_utils.so
 
 # Audio Libraries
--vendor/lib/liba2dpoffload.so
 -vendor/lib/libacdb-fts.so
 -vendor/lib/libacdbloader.so
 -vendor/lib/libacdbrtac.so
@@ -108,18 +106,9 @@ system_ext/framework/audiosphere.jar
 -vendor/lib/libaudioalsa.so
 -vendor/lib/libaudioconfigstore.so
 -vendor/lib/libaudioparsers.so
--vendor/lib/libbatterylistener.so
--vendor/lib/libcirrusspkrprot.so
--vendor/lib/libcomprcapture.so
 -vendor/lib/libdrc.so
--vendor/lib/libexthwplugin.so
--vendor/lib/libhdmiedid.so
 -vendor/lib/libhdmipassthru.so
--vendor/lib/libhfp.so
 -vendor/lib/libqtigef.so
--vendor/lib/libsndmonitor.so
--vendor/lib/libspkrprot.so
--vendor/lib/libssrec.so
 -vendor/lib/libsurround_3mic_proc.so
 
 # Batterysecret
