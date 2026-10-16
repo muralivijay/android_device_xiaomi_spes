@@ -68,6 +68,10 @@ function blob_fixup() {
         vendor/lib64/libdpps.so)
             "${PATCHELF}" --replace-needed "libtinyxml2.so" "libtinyxml2-v34.so" "${2}"
             ;;
+	vendor/etc/seccomp_policy/atfwd@2.0.policy)
+	    [ "$2" = "" ] && return 0
+	    echo 'gettid: 1' >> ${2}
+	    ;;
     esac
 }
 
