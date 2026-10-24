@@ -70,7 +70,7 @@ on post-fs
     start vendor.qti.hardware.display.allocator
 
     # Start services for bootanim
-    start vendor.hwcomposer-2-1
+    start vendor.qti.hardware.display.composer
 
 on early-boot
     # set RLIMIT_MEMLOCK to 64MB
