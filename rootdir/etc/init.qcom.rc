@@ -411,6 +411,22 @@ on property:sys.boot_completed=1
     # to hide Magisk & co.
     chmod 440 /proc/net/unix
 
+# The composer HAL is shipped by the vendor blob as "class hal animation", so it
+# is only started together with the hal class at "on boot". That leaves
+# surfaceflinger, which we start from "on post-fs", waiting several seconds for
+# IComposer while bootanim retries SurfaceFlingerAIDL. Override the vendor
+# definition here to keep a single service definition and to give the
+# compositor a task profile that matches its workload.
+service vendor.qti.hardware.display.composer /vendor/bin/hw/vendor.qti.hardware.display.composer-service
+    override
+    class hal animation
+    user system
+    group graphics drmrpc
+    capabilities SYS_NICE
+    onrestart restart surfaceflinger
+    socket pps stream 0660 system system
+    task_profiles ProcessCapacityHigh HighPerformance
+
 service surfaceflinger /system/bin/surfaceflinger
     class main
     user system
