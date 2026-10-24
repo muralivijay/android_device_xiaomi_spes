@@ -16,7 +16,6 @@ git clone --depth=1 https://github.com/muralivijay/kernel_xiaomi_spes -b main-a1
 # Hardware/Xiaomi
 rm -fr hardware/xiaomi
 git clone https://github.com/LineageOS/android_hardware_xiaomi hardware/xiaomi
-rm -fr hardware/lineage/interfaces/health/aidl/default/Android.bp
 rm -fr hardware/xiaomi/interfaces/xiaomi/hardware/mtdservice/1.3
 rm -fr hardware/xiaomi/interfaces/xiaomi/hardware/mfidoca/1.0
 
