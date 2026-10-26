@@ -79,6 +79,12 @@ persist.log.tag.wificond=S
 persist.log.tag.TrafficStats=S
 persist.log.tag.ContrastColorUtil=S
 
+# Logs - satellite (NTN) stack is unused on spes: no satellite hardware and no
+# satellite config updater, so every NTN query floods logcat (~450 lines/s)
+persist.log.tag.SatelliteController=S
+persist.log.tag.TelephonyConfigUpdateInstallReceiver=S
+persist.log.tag.NtnCapabilityResolver=S
+
 # Media
 media.aac_51_output_enabled=true
 media.settings.xml=/vendor/etc/media_profiles_khaje.xml
