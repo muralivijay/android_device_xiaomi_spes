@@ -76,11 +76,12 @@
         </interface>
     </hal>
     <hal format="hidl" optional="true">
-         <name>android.hardware.graphics.allocator</name>
-         <interface>
-             <name>IComposer</name>
-             <instance>default</instance>
-         </interface>
+        <name>android.hardware.graphics.composer</name>
+        <version>2.1-4</version>
+        <interface>
+            <name>IComposer</name>
+            <instance>default</instance>
+        </interface>
     </hal>
     <hal format="hidl" optional="true">
         <name>android.hardware.radio.config</name>
