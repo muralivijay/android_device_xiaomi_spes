@@ -185,6 +185,17 @@
     <ctl name="MultiMedia1 Mixer SLIM_8_TX" value="0" />
     <ctl name="MultiMedia2 Mixer SLIM_8_TX" value="0" />
     <!-- fm end -->
+    
+        <!-- ultrasound related -->
+    <ctl name="Ultrasound Enable" value="Off" />
+    <ctl name="Ultrasound RampDown" value="Off"/>
+    <ctl name="Ultrasound Event" value="0"/>
+    <ctl name="Ultrasound Mode" value="918"/>
+    <ctl name="Ultrasound Custom Setting 4" value="1"/>
+    <ctl name="Ultrasound Rx Port" value="Off"/>
+    <ctl name="Ultrasound Microphone Index" value="0"/>
+    <ctl name="Ultrasound Debug Mode" value="3" />
+    <ctl name="Ultrasound Suspend" value="0"/>
 
     <!-- Multimode Voice1 -->
     <ctl name="RX_CDC_DMA_RX_1_Voice Mixer VoiceMMode1" value="0" />
@@ -431,6 +442,62 @@
     <ctl name="MultiMedia16 Mixer SLIM_7_TX" value="0" />
     <ctl name="MultiMedia16 Mixer SLIM_8_TX" value="0" />
     <ctl name="MultiMedia16 Mixer USB_AUDIO_TX" value="0" />
+    
+        <!-- These are audio route (FE to BE) specific mixer settings -->
+    <!-- ultrasound spes start -->
+    <path name="ultrasound-proximity">
+        <ctl name="Ultrasound Enable" value="On" />
+        <ctl name="Ultrasound Mode" value="918" />
+        <ctl name="Ultrasound Custom Setting 4" value="1"/>
+        <ctl name="Ultrasound Debug Mode" value="0" />
+        <ctl name="Ultrasound Log Level" value="0" />
+    </path>
+
+    <path name="ultrasound-proximity-output">
+    </path>
+
+    <path name="ultrasound-proximity-input">
+    </path>
+
+    <path name="ultrasound-rampdown">
+        <ctl name="Ultrasound RampDown" value="On"/>
+    </path>
+
+    <path name="ultrasound-output">
+        <!-- <ctl name="Ultrasound Enable" value="On" /> -->
+        <ctl name="RX_CDC_DMA_RX_1 SampleRate" value="KHZ_96" />
+        <ctl name="RX_CDC_DMA_RX_1 Channels" value="One" />
+        <ctl name="RX_MACRO RX2 MUX" value="AIF2_PB" />
+        <ctl name="RX INT0_2 MUX" value="RX2" />
+        <ctl name="RX INT0 DEM MUX" value="CLSH_DSM_OUT" />
+        <ctl name="EAR_RDAC Switch" value="1" />
+        <ctl name="RDAC3_MUX" value="RX1" />
+        <ctl name="aw87xxx_rcv_switch" value="Receiver" />
+        <ctl name="EAR PA GAIN" value="G_0_DB" />
+        <ctl name="RX_EAR Mode" value="ON" />
+    </path>
+
+    <path name="ultrasound-input">
+        <ctl name="Ultrasound Custom Setting 1" value="1"/>
+        <ctl name="TX_CDC_DMA_TX_4 Channels" value="One" />
+        <ctl name="TX_CDC_DMA_TX_4 SampleRate" value="KHZ_96" />
+        <ctl name="TX DEC3 MUX" value="SWR_MIC" />
+        <ctl name="TX SMIC MUX3" value="SWR_MIC4" />
+        <ctl name="TX_AIF2_CAP Mixer DEC3" value="1" />
+        <ctl name="ADC2_MIXER Switch" value="1" />
+        <ctl name="ADC2 MUX" value="INP3" />
+        <ctl name="ADC1 Volume" value="12" />
+        <ctl name="ADC2 Volume" value="12" />
+    </path>
+
+    <path name="ultrasound-on">
+        <ctl name="Ultrasound Rx Port" value="On"/>
+    </path>
+
+    <path name="ultrasound-suspend">
+        <ctl name="Ultrasound Suspend" value="1"/>
+    </path>
+   <!-- ultrasound spes end -->
 
     <!-- These are audio route (FE to BE) specific mixer settings -->
     <path name="gsm-mode">
