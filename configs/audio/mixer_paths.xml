@@ -569,7 +569,7 @@
     </path>
 
     <path name="deep-buffer-playback">
-        <ctl name="RX_CDC_DMA_RX_1 Audio Mixer MultiMedia1" value="1" />
+        <ctl name="RX_CDC_DMA_RX_0 Audio Mixer MultiMedia1" value="1" />
     </path>
 
     <path name="deep-buffer-playback handset">
@@ -682,7 +682,7 @@
     </path>
 
     <path name="low-latency-playback">
-        <ctl name="RX_CDC_DMA_RX_1 Audio Mixer MultiMedia5" value="1" />
+        <ctl name="RX_CDC_DMA_RX_0 Audio Mixer MultiMedia5" value="1" />
     </path>
 
     <path name="low-latency-playback handset">
@@ -2597,19 +2597,21 @@
     </path>
 
     <path name="speaker">
+        <ctl name="EAR_RDAC Switch" value="1" />
+        <ctl name="RDAC3_MUX" value="RX1" />
+        <ctl name="RX_EAR Mode" value="ON" />
         <ctl name="aw87xxx_rcv_switch" value="Music" />
         <!-- HP_MODE NORMAL_MODE -->
         <ctl name="AUX PATH Mode" value="HP_MODE" />
-        <ctl name="RX_MACRO RX2 MUX" value="AIF2_PB" />
-        <ctl name="RX_MACRO RX3 MUX" value="AIF2_PB" />
-        <ctl name="RX INT0_1 MIX1 INP1" value="RX2" />
-        <ctl name="RX INT2_1 MIX1 INP0" value="RX3" />
-        <ctl name="RX INT0 DEM MUX" value="CLSH_DSM_OUT" />
         <ctl name="AUX_RDAC Switch" value="1" />
-        <ctl name="EAR_RDAC Switch" value="1" />
-        <!--<ctl name="RDAC3_MUX" value="RX1" />-->
-        <ctl name="RX_EAR Mode" value="ON" />
         <ctl name="aw87xxx_spk_switch" value="Music" />
+        <ctl name="RX_RX2 Digital Volume" value="79" />
+        <ctl name="RX INT2_1 MIX1 INP0" value="RX1" />
+        <ctl name="RX INT0_1 MIX1 INP0" value="RX0" />
+        <ctl name="RX_MACRO RX0 MUX" value="AIF1_PB" />
+        <ctl name="RX_MACRO RX1 MUX" value="AIF1_PB" />
+        <ctl name="RX INT0 DEM MUX" value="CLSH_DSM_OUT" />
+        <ctl name="RX_CDC_DMA_RX_0 Channels" value="Two" />
     </path>
     
     <path name="speaker-mono">
