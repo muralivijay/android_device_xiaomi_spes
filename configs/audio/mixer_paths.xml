@@ -2764,6 +2764,9 @@
 
     <path name="voice-speaker-stereo">
         <path name="speaker" />
+        <ctl name="aw87xxx_rcv_switch" value="Voice" />
+        <ctl name="aw87xxx_spk_switch" value="Voice" />
+        <ctl name="RX_RX2 Digital Volume" value="84" />        
     </path>
 
     <path name="voice-speaker-2">
