@@ -460,6 +460,10 @@
     <path name="ultrasound-proximity-input">
     </path>
 
+    <path name="ultrasound-proximity-output ultrasound-output">
+        <ctl name="Ultrasound Mode" value="1120" />
+    </path>
+
     <path name="ultrasound-rampdown">
         <ctl name="Ultrasound RampDown" value="On"/>
     </path>
