@@ -38,8 +38,6 @@ function configure_read_ahead_kb_values() {
     done
 }
 
-configure_read_ahead_kb_values
-
 # Apply Settings for bengal
 # fix ECC Crash
 echo N > /sys/module/lpm_levels/system/pwr/pwr-l2-gdhs/idle_enabled
@@ -83,6 +81,8 @@ echo "0:1190000" > /sys/devices/system/cpu/cpu_boost/input_boost_freq
 echo 120 > /sys/devices/system/cpu/cpu_boost/input_boost_ms
 echo "0:1900800 1:0 2:0 3:0 4:2400000 5:0 6:0 7:0" > /sys/devices/system/cpu/cpu_boost/powerkey_input_boost_freq
 echo 400 > /sys/devices/system/cpu/cpu_boost/powerkey_input_boost_ms
+
+configure_read_ahead_kb_values
 
 setprop vendor.post_boot.parsed 1
 
