@@ -261,7 +261,7 @@ PRODUCT_COPY_FILES += \
 
 # Go
 PRODUCT_VENDOR_PROPERTIES += \
-    ro.config.low_ram=true
+    ro.config.low_ram=false
 
 # GNSS
 PRODUCT_PACKAGES += \
