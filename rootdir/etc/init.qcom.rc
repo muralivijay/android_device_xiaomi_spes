@@ -150,12 +150,6 @@ on boot
     # Create hvdcp_opti directory
     mkdir /mnt/vendor/persist/hvdcp_opti 0770 root system
 
-    # Enable qcrild and data services
-    enable vendor.qcrild
-    enable vendor.qcrild2
-    enable vendor.dataqti
-    enable vendor.dataadpl
-
     # limit discard size to 128MB in order to avoid long IO latency
     write /sys/block/sda/queue/discard_max_bytes 134217728
 
@@ -282,6 +276,13 @@ on post-fs-data
 
     # Create dir for TUI
     mkdir /data/vendor/tui 0700 system drmrpc
+
+on property:vendor.peripheral.modem.state=ONLINE
+    # Enable qcrild and data services
+    enable vendor.qcrild
+    enable vendor.qcrild2
+    enable vendor.dataqti
+    enable vendor.dataadpl
 
 on property:ro.vendor.iocgrp.config=1
     mkdir /dev/blkio
