@@ -38,6 +38,8 @@ function configure_read_ahead_kb_values() {
     done
 }
 
+configure_read_ahead_kb_values
+
 # Apply Settings for bengal
 # fix ECC Crash
 echo N > /sys/module/lpm_levels/system/pwr/pwr-l2-gdhs/idle_enabled
