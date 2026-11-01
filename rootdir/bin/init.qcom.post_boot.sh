@@ -47,8 +47,6 @@ echo N > /sys/module/lpm_levels/system/perf/perf-l2-gdhs/idle_enabled
 echo N > /sys/module/lpm_levels/system/pwr/pwr-l2-gdhs/suspend_enabled
 echo N > /sys/module/lpm_levels/system/perf/perf-l2-gdhs/suspend_enabled
 
-setprop vendor.post_boot.parsed 1
-
 # power/perf tunings for khaje
 # Core control parameters on big
 echo 0 > /sys/devices/system/cpu/cpu0/core_ctl/enable
@@ -85,6 +83,8 @@ echo "0:1190000" > /sys/devices/system/cpu/cpu_boost/input_boost_freq
 echo 120 > /sys/devices/system/cpu/cpu_boost/input_boost_ms
 echo "0:1900800 1:0 2:0 3:0 4:2400000 5:0 6:0 7:0" > /sys/devices/system/cpu/cpu_boost/powerkey_input_boost_freq
 echo 400 > /sys/devices/system/cpu/cpu_boost/powerkey_input_boost_ms
+
+setprop vendor.post_boot.parsed 1
 
 # sched_load_boost as -6 is equivalent to target load as 85. It is per cpu tunable.
 echo -6 >  /sys/devices/system/cpu/cpu0/sched_load_boost
