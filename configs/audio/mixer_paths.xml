@@ -2749,6 +2749,8 @@
     </path>
     <path name="voice-handset">
         <path name="handset" />
+        <ctl name="EAR PA GAIN" value="G_0_DB" />        
+        <ctl name="aw87xxx_profile_switch_0" value="Receiver" />        
     </path>
 
     <path name="voice-handset-tmus">
