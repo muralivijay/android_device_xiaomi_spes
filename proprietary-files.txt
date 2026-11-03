@@ -640,6 +640,7 @@ vendor/etc/xtra_root_cert.pem
 -vendor/lib64/libloc_api_v02.so
 -vendor/lib64/libloc_api_wds.so
 -vendor/lib64/libloc_core.so
+-vendor/lib64/liblocdiagiface.so
 -vendor/lib64/libloc_socket.so
 -vendor/lib64/liblocation_api.so
 -vendor/lib64/liblocationservice.so
