@@ -41,3 +41,6 @@ cd ../../
 
 # Rename conflicting qti_kernel_headers in source
 sed -i 's/"qti_kernel_headers"/"qti_kernel_headers_old"/g' vendor/lineage/build/soong/Android.bp
+
+# Disable Android Go
+sed -i '/PRODUCT_VENDOR_PROPERTIES += \\/,/ro.config.low_ram=true \\/d' build/target/product/go_defaults_common.mk
