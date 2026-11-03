@@ -127,7 +127,8 @@ PRODUCT_PACKAGES += \
     libexthwplugin \
     libhfp \
     libbatterylistener \
-    libnotifyaudiohal
+    libnotifyaudiohal \
+    libbthost_if_sink
 
 # Audio configs
 PRODUCT_COPY_FILES += \
