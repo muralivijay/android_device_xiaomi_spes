@@ -22,7 +22,7 @@ static void ultrasound_enable(int enable) {
         if (retval == Result::OK) {
             result->setParameters({} /* context */,
                                   {
-                                          {"ultrasound-sensor", std::to_string(enable)},
+                                          {"ultrasound-proximity", std::to_string(enable)},
                                   });
         }
     });
