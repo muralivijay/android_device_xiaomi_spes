@@ -33,5 +33,11 @@ echo -e "${color}Switch back to legacy imsrcsd sepolicy${end}"
 rm -rf device/qcom/sepolicy_vndr/legacy-um/qva/vendor/bengal/ims/imsservice.te
 cp device/qcom/sepolicy_vndr/legacy-um/qva/vendor/bengal/legacy-ims/hal_rcsservice.te device/qcom/sepolicy_vndr/legacy-um/qva/vendor/bengal/ims/hal_rcsservice.te
 
+# patchs
+echo -e "${color}apply patch to remove sounddose from audio interfaces ${end}"
+cp device/xiaomi/spes/patchs/0001-interfaces-kill-android.hardware.audio.sounddose-ven.patch hardware/interfaces
+cd hardware/interfaces && git apply 0001-interfaces-kill-android.hardware.audio.sounddose-ven.patch
+cd ../../
+
 # Rename conflicting qti_kernel_headers in source
 sed -i 's/"qti_kernel_headers"/"qti_kernel_headers_old"/g' vendor/lineage/build/soong/Android.bp
