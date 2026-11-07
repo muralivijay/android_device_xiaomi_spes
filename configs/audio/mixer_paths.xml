@@ -298,7 +298,7 @@
 
     <!-- Codec controls -->
     <!-- WSA controls -->
-    <ctl name="RX_CDC_DMA_RX_1 Channels" value="Two" />
+    <ctl name="RX_CDC_DMA_RX_1 Channels" value="One" />
     <ctl name="RX_MACRO RX2 MUX" value="ZERO" />
     <ctl name="RX INT2_1 MIX1 INP0" value="ZERO" />
     <ctl name="AUX_RDAC Switch" value="0" />
@@ -2383,7 +2383,7 @@
     </path>
 
     <path name="voicemmode2-call">
-        <ctl name="RX_CDC_DMA_RX_1_Voice Mixer VoiceMMode2" value="1" />
+        <ctl name="RX_CDC_DMA_RX_0_Voice Mixer VoiceMMode2" value="1" />
         <ctl name="VoiceMMode2_Tx Mixer TX_CDC_DMA_TX_3_MMode2" value="1" />
     </path>
 
