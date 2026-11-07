@@ -53,7 +53,14 @@ persist.vendor.qti.telephony.vt_cam_interface=2
 ro.telephony.block_binder_thread_on_incoming_calls=false
 
 # LMK
-ro.lmk.medium=700
+ro.lmk.critical_upgrade=false
+ro.lmk.upgrade_pressure=60
+ro.lmk.downgrade_pressure=40
+ro.lmk.medium=800
+ro.lmk.thrashing_limit=55
+ro.lmk.thrashing_limit_decay=10
+ro.lmk.psi_partial_stall_ms=250
+ro.lmk.psi_complete_stall_ms=800
 
 # Disable RescueParty due to high risk of data loss
 persist.sys.disable_rescue=true
