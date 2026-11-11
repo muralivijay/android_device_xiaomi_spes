@@ -2597,6 +2597,7 @@
         <ctl name="EAR_RDAC Switch" value="1" />
         <ctl name="RDAC3_MUX" value="RX1" />
         <ctl name="RX_EAR Mode" value="ON" />
+        <ctl name="EAR PA GAIN" value="G_M3_DB" />
         <ctl name="aw87xxx_rcv_switch" value="Music" />
         <!-- HP_MODE NORMAL_MODE -->
         <ctl name="AUX PATH Mode" value="HP_MODE" />
