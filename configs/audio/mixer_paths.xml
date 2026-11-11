@@ -804,7 +804,7 @@
     </path>
 
     <path name="audio-ull-playback">
-        <ctl name="RX_CDC_DMA_RX_1 Audio Mixer MultiMedia8" value="1" />
+        <ctl name="RX_CDC_DMA_RX_0 Audio Mixer MultiMedia8" value="1" />
     </path>
 
     <path name="audio-ull-playback handset">
@@ -915,7 +915,7 @@
     </path>
 
     <path name="compress-offload-playback">
-        <ctl name="RX_CDC_DMA_RX_1 Audio Mixer MultiMedia4" value="1" />
+        <ctl name="RX_CDC_DMA_RX_0 Audio Mixer MultiMedia4" value="1" />
     </path>
 
     <path name="compress-offload-playback handset">
@@ -1040,7 +1040,7 @@
     </path>
 
     <path name="compress-offload-playback2">
-        <ctl name="RX_CDC_DMA_RX_1 Audio Mixer MultiMedia7" value="1" />
+        <ctl name="RX_CDC_DMA_RX_0 Audio Mixer MultiMedia7" value="1" />
     </path>
 
     <path name="compress-offload-playback2 handset">
@@ -1154,7 +1154,7 @@
     </path>
 
     <path name="compress-offload-playback3">
-        <ctl name="RX_CDC_DMA_RX_1 Audio Mixer MultiMedia10" value="1" />
+        <ctl name="RX_CDC_DMA_RX_0 Audio Mixer MultiMedia10" value="1" />
     </path>
 
     <path name="compress-offload-playback3 handset">
@@ -1267,7 +1267,7 @@
     </path>
 
     <path name="compress-offload-playback4">
-        <ctl name="RX_CDC_DMA_RX_1 Audio Mixer MultiMedia11" value="1" />
+        <ctl name="RX_CDC_DMA_RX_0 Audio Mixer MultiMedia11" value="1" />
     </path>
 
     <path name="compress-offload-playback4 handset">
@@ -1380,7 +1380,7 @@
     </path>
 
     <path name="compress-offload-playback5">
-        <ctl name="RX_CDC_DMA_RX_1 Audio Mixer MultiMedia12" value="1" />
+        <ctl name="RX_CDC_DMA_RX_0 Audio Mixer MultiMedia12" value="1" />
     </path>
 
     <path name="compress-offload-playback5 handset">
@@ -1493,7 +1493,7 @@
     </path>
 
     <path name="compress-offload-playback6">
-        <ctl name="RX_CDC_DMA_RX_1 Audio Mixer MultiMedia13" value="1" />
+        <ctl name="RX_CDC_DMA_RX_0 Audio Mixer MultiMedia13" value="1" />
     </path>
 
     <path name="compress-offload-playback6 handset">
@@ -1606,7 +1606,7 @@
     </path>
 
     <path name="compress-offload-playback7">
-        <ctl name="RX_CDC_DMA_RX_1 Audio Mixer MultiMedia14" value="1" />
+        <ctl name="RX_CDC_DMA_RX_0 Audio Mixer MultiMedia14" value="1" />
     </path>
 
     <path name="compress-offload-playback7 handset">
@@ -1719,7 +1719,7 @@
     </path>
 
     <path name="compress-offload-playback8">
-        <ctl name="RX_CDC_DMA_RX_1 Audio Mixer MultiMedia15" value="1" />
+        <ctl name="RX_CDC_DMA_RX_0 Audio Mixer MultiMedia15" value="1" />
     </path>
 
     <path name="compress-offload-playback8 handset">
@@ -1832,7 +1832,7 @@
     </path>
 
     <path name="compress-offload-playback9">
-        <ctl name="RX_CDC_DMA_RX_1 Audio Mixer MultiMedia16" value="1" />
+        <ctl name="RX_CDC_DMA_RX_0 Audio Mixer MultiMedia16" value="1" />
     </path>
 
     <path name="compress-offload-playback9 handset">
@@ -2058,8 +2058,8 @@
 
     <path name="play-fm">
         <ctl name="SLIMBUS_8 LOOPBACK Volume" value="1" />
-        <ctl name="RX_CDC_DMA_RX_1 Port Mixer SLIM_8_TX" value="1" />
-        <ctl name="RX_CDC_DMA_RX_1_DL_HL Switch" value="1" />
+        <ctl name="RX_CDC_DMA_RX_0 Port Mixer SLIM_8_TX" value="1" />
+        <ctl name="RX_CDC_DMA_RX_0_DL_HL Switch" value="1" />
     </path>
 
     <path name="play-fm headphones">
@@ -2265,7 +2265,7 @@
     </path>
 
     <path name="compress-voip-call">
-        <ctl name="RX_CDC_DMA_RX_1_Voice Mixer Voip" value="1" />
+        <ctl name="RX_CDC_DMA_RX_0_Voice Mixer Voip" value="1" />
         <ctl name="Voip_Tx Mixer TX_CDC_DMA_TX_3_Voip" value="1" />
     </path>
 
@@ -2534,7 +2534,7 @@
     </path>
 
     <path name="spkr-rx-calib">
-        <ctl name="RX_CDC_DMA_RX_1_DL_HL Switch"  value="1" />
+        <ctl name="RX_CDC_DMA_RX_0_DL_HL Switch"  value="1" />
     </path>
 
     <path name="spkr-vi-record">
@@ -3377,7 +3377,7 @@
     </path>
 
     <path name="mmap-playback">
-        <ctl name="RX_CDC_DMA_RX_1 Audio Mixer MultiMedia16" value="1" />
+        <ctl name="RX_CDC_DMA_RX_0 Audio Mixer MultiMedia16" value="1" />
     </path>
 
    <path name="mmap-playback handset">
