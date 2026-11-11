@@ -98,7 +98,6 @@ system_ext/framework/audiosphere.jar
 
 # Audio Libraries
 -vendor/lib/libacdb-fts.so
--vendor/lib/libacdbloader.so
 -vendor/lib/libacdbrtac.so
 -vendor/lib/libadiertac.so
 -vendor/lib/libadm.so
@@ -110,6 +109,9 @@ system_ext/framework/audiosphere.jar
 -vendor/lib/libhdmipassthru.so
 -vendor/lib/libqtigef.so
 -vendor/lib/libsurround_3mic_proc.so
+
+# acdbloader - moto sm6225
+-vendor/lib/libacdbloader.so|caa9c2b53884a1c56dc6317d31027a8796208bce
 
 # Batterysecret
 -vendor/bin/batterysecret
